@@ -26,7 +26,7 @@ public class UserDO extends BaseEntity{
 	@Column(length=50)
 	private String password;
 	
-	@Column(length=50)
+	@Column(length=50,name="realName")
 	private String realName;
 	
 	//所属部门

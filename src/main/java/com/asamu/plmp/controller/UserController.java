@@ -28,5 +28,27 @@ public class UserController {
 		return JsonResult.success(list);
 	}
 	
+	@RequestMapping("/deleteUsers")
+	@ResponseBody
+	public JsonResult deleteUsers(Integer userid) {
+		userService.deleteUser(userid);
+		return JsonResult.success();
+	}
+	
+	@RequestMapping("/updateUser")
+	@ResponseBody
+	public JsonResult updateUser(Integer userid,UserDO user) {
+		userService.updateUser(userid,user);
+		return JsonResult.success();
+	}
+	
+	@RequestMapping("/addUser")
+	@ResponseBody
+	public JsonResult addUser(UserDO user) {
+		userService.addUser(user);
+		return JsonResult.success();
+	}
+	
+	
 	
 }
