@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.asamu.plmp.pojo.vo.JsonResult;
+
 @Controller
 @RequestMapping("/")
 public class PageController {
@@ -22,5 +24,11 @@ public class PageController {
 	@RequestMapping("message")
 	public String message() {
 		return "message/message";
+	}
+	
+	@RequestMapping("/getUserMenu")
+	public JsonResult getUserMenu() {
+		
+		return null;
 	}
 }

@@ -47,9 +47,8 @@ public class UserDO extends BaseEntity{
 	@Column(name="update_time")
 	private Date updateTime;
 	
-/*	@JoinColumn(name="role_id")
-	@ManyToOne
-	private Integer roleId;*/
+	@Column(name="role_id")
+	private Integer roleId;
 	
 	@Column
 	private Integer status;

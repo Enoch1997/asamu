@@ -8,27 +8,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * 
- * @author Enoch
- *
- */
-
-
 @Entity
-@Table(name="t_menu")
-public class MenuDO extends BaseEntity{
-	@Column(length=50)
+@Table(name="t_role")
+public class RoleDO extends BaseEntity{
+	@Column
 	private String name;
 	
-	private String uri;
-	
 	private String description;
-	
-	private Integer pid;
-	
-	@Column(name="menu_level")
-	private Integer menuLevel;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_Time")
@@ -37,6 +23,8 @@ public class MenuDO extends BaseEntity{
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_time")
 	private Date updateTime;
+	
+	private String remarks;//备注
 
 	public String getName() {
 		return name;
@@ -46,36 +34,12 @@ public class MenuDO extends BaseEntity{
 		this.name = name;
 	}
 
-	public String getUri() {
-		return uri;
-	}
-
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Integer getPid() {
-		return pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
-	public Integer getMenuLevel() {
-		return menuLevel;
-	}
-
-	public void setMenuLevel(Integer menuLevel) {
-		this.menuLevel = menuLevel;
 	}
 
 	public Date getCreateTime() {
@@ -94,26 +58,32 @@ public class MenuDO extends BaseEntity{
 		this.updateTime = updateTime;
 	}
 
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
 	@Override
 	public String toString() {
-		return "MenuDO [name=" + name + ", uri=" + uri + ", description=" + description + ", pid=" + pid
-				+ ", menuLevel=" + menuLevel + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+		return "RoleDO [name=" + name + ", description=" + description + ", createTime=" + createTime + ", updateTime="
+				+ updateTime + ", remarks=" + remarks + "]";
 	}
 	
 	
 	
 /*	##########################
-	##菜单表t_menu
+	##角色表t_role
 	##########################
-	create table t_menu(
+	create table t_role(
 		id				int unsigned auto_increment comment '主键id',
-		name			varchar(50) not null comment '菜单名称',
-		uri				varchar(255) comment '菜单uri',
+		name			varchar(50) not null comment '角色名称',
 		description		varchar(255) comment '描述',
-		pid				int unsigned default '0' comment '父菜单id',
-		menu_level		tinyint unsigned default '1' comment '菜单层级',
 		create_time		datetime comment '创建时间',
 		update_time		datetime comment '更新时间',
+		remarks			varchar(255) comment '备注',
 		primary key(id)
-	)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='菜单表';*/
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='角色表';*/
 }

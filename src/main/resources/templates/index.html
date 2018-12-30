@@ -85,15 +85,15 @@ layui.use('element', function(){
 		var u = window.location.href;
 		var end = u.indexOf("#");
 		var rurl = u.substring(0,end);
-	  //设置新的锚点
-	  window.location.href = rurl + "#" + url;
+	  	//设置新的锚点
+	  	window.location.href = rurl + "#" + url;
 		//$("#mainFrame").attr("src",url);
 	}
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	     var hash = location.hash;
 	     var url = hash.substring(1,hash.length);
-	     $("#baseIframe").attr("src", url);
+	     $("#mainframe").attr("src", url);
 	}, false)
 </script>
 </body>
