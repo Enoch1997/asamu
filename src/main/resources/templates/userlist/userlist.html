@@ -7,7 +7,7 @@
 <body style="width: 100%; height: 100%;">
 	<div style="padding: 20px; background-color: #F2F2F2;">
 		<div class="layui-card">
-	        <div class="layui-card-header">消息中心</div>
+	        <div class="layui-card-header">用户列表</div>
 	        <div class="layui-card-body">
 	          	<table class="layui-hide" id="test" lay-filter="test"></table>
 	        </div>
@@ -21,13 +21,17 @@ layui.use('table', function(){
 	  
 	  table.render({
 		    elem: '#test'
-		    ,url:'/message/getUserMessage'
+		    ,url:'/user/getUsers'
 		    ,cols: [[
 		      {type:'checkbox'}
 		      ,{field:'id',hide:true}
-		      ,{field:'title', title: '标题',event:'showDetail',style:'cursor:pointer;'}
-		      ,{field:'remark', title: '状态',align:'center',width:200}
-		      ,{field:'createTime', title: '时间',align:'center',width:200}
+		      ,{field:'username', title: '用户名',align:'center',width:200}
+		      ,{field:'realName', title: '姓名',align:'center',width:200}
+		      ,{field:'unit', title: '所属部门',align:'center',width:200}
+		      ,{field:'tel', title: '电话',align:'center',width:200}
+		      ,{field:'email', title: '邮箱',align:'center',width:200}
+		      ,{field:'roleId', title: '用户等级',align:'center',width:200}
+		      ,{field:'remarks', title: '备注',align:'center',width:200}
 		    ]]
 		    ,page: true
 		    ,response: {
