@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+</head>
+<link rel="stylesheet" href="/layui/css/layui.css">
+<body style="width: 100%; height: 100%;">
+	<div style="padding: 20px; background-color: #F2F2F2;">
+		<div class="layui-card">
+	        <div class="layui-card-header">消息中心</div>
+	        <div class="layui-card-body">
+	          	<table class="layui-hide" id="test" lay-filter="test"></table>
+	        </div>
+	      </div>
+	</div>
+</body>
+<script src="/layui/layui.js"></script>
+<script type="text/javascript" th:inline="none">
+layui.use('table', function(){
+	  var table = layui.table;
+	  
+	  table.render({
+		    elem: '#test'
+		    ,url:'/json/test.json'
+		    ,cols: [[
+		      {type:'checkbox'}
+		      ,{field:'id',hide:true}
+		      ,{field:'title', title: '标题',event:'showDetail',style:'cursor:pointer;'}
+		      ,{field:'createTime', title: '时间',align:'center',width:200}
+		    ]]
+		    ,page: true
+		    ,response: {
+		        statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+		      }
+		      ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+		        return {
+		          "code": res.status, //解析接口状态
+		          "msg": res.message, //解析提示文本
+		          "count": res.total, //解析数据长度
+		          "data": res.rows.item //解析数据列表
+		        };
+		      }
+		  });
+	  
+	  table.on('tool(test)',function(object){
+		  var data=object.data;
+		  if(object.event==='showDetail'){
+			  alert(data.id);
+		  }
+	  });
+	});
+	
+</script>
+</html>
