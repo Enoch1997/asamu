@@ -33,6 +33,11 @@ public class PageController {
 		return "message/message";
 	}
 	
+	@RequestMapping("user")
+	public String getUserPage() {
+		return "userlist/userlist";
+	}
+	
 	@RequestMapping("/getUserMenu")
 	@ResponseBody
 	public JsonResult getUserMenu(Integer userId) {
