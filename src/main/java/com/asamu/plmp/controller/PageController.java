@@ -37,7 +37,6 @@ public class PageController {
 	public JsonResult getUserMenu(Integer userId) {
 		Optional<UserDO> op = userDAO.findById(userId);
 		UserDO userDO = op.get();
-		System.out.println(userDO.toString());
 		return JsonResult.success(userDO);
 	}
 }
