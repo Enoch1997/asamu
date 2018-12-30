@@ -40,7 +40,7 @@ public class UserDO extends BaseEntity{
 	private String email;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_Time")
+	@Column(name="create_time")
 	private Date createTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
