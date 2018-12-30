@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
+import com.asamu.plmp.service.MenuService;
 
 @Controller
 @RequestMapping("/")
 public class PageController {
 	@Autowired
-	private UserDAO userDAO;
+	private MenuService menuService;
 	
 	@RequestMapping("index")
 	public String login() {
@@ -35,8 +36,6 @@ public class PageController {
 	@RequestMapping("/getUserMenu")
 	@ResponseBody
 	public JsonResult getUserMenu(Integer userId) {
-		Optional<UserDO> op = userDAO.findById(userId);
-		UserDO userDO = op.get();
-		return JsonResult.success(userDO);
+		return menuService.getUserMenu(userId);
 	}
 }
