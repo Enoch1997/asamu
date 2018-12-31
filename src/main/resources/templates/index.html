@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,7 +10,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">1月4号答辩了</div>
+    <div class="layui-logo">浙理教学项目管理平台</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
     </ul>
@@ -61,16 +61,15 @@
     </div>
     
   </div>
-  
   <div class="layui-footer">
     <!-- 底部固定区域 -->
-    © asamu.com - 高校项目全生命周期管理平台
+    © asamu.com - 浙江理工大学教学项目全生命周期管理平台
   </div>
 </div>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" ></script>
 <script src="/layui/layui.js"></script>
 
-<script>
+<script th:inline="javascript">
 //JavaScript代码区域
 layui.use('element', function(){
   var element = layui.element;
@@ -96,7 +95,9 @@ layui.use('element', function(){
 	     var hash = location.hash;
 	     var url = hash.substring(1,hash.length);
 	     $("#mainFrame").attr("src", url);
-	}, false)
+	}, false);
+	
+
 </script>
 
 </body>
