@@ -92,5 +92,8 @@ public class PageController {
 		return menuService.getUserMenu(userId);
 	}
 	
-	
+	@RequestMapping("/declare/project")
+	public String projectDeclarePage(Integer userId) {
+		return "declare/projectDeclare";
+	}
 }
