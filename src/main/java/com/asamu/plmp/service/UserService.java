@@ -16,9 +16,9 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	public UserDO findByUserId(Integer userid) {
+	public UserDO findUserById(Integer userid) {
 		
-		return null;
+		return userDAO.findUserDoById(userid);
 	}
 	
 	public List<UserDO> findAll() {
@@ -33,8 +33,9 @@ public class UserService {
 	@Transactional
 	public void updateUser(Integer userid,UserDO user) {
 		// TODO Auto-generated method stub
-		//userDAO.update(userid,user);
-		
+		UserDO userDO= findUserById(userid);
+		userDO.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+		userDAO.save(userDO);
 	}
 
 	public void addUser(UserDO user) {

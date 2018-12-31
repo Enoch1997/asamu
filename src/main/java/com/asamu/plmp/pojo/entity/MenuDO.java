@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -27,6 +28,10 @@ public class MenuDO extends BaseEntity{
 	
 	private Integer pid;
 	
+	private String pname;
+	
+	
+	
 	@Column(name="menu_level")
 	private Integer menuLevel;
 	
@@ -37,6 +42,16 @@ public class MenuDO extends BaseEntity{
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_time")
 	private Date updateTime;
+	
+	
+	@Transient
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 
 	public String getName() {
 		return name;
@@ -96,10 +111,12 @@ public class MenuDO extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "MenuDO [name=" + name + ", uri=" + uri + ", description=" + description + ", pid=" + pid
-				+ ", menuLevel=" + menuLevel + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+		return "MenuDO [name=" + name + ", uri=" + uri + ", description=" + description + ", pid=" + pid + ", Pname="
+				+ pname + ", menuLevel=" + menuLevel + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ "]";
 	}
-	
+
+
 	
 	
 /*	##########################

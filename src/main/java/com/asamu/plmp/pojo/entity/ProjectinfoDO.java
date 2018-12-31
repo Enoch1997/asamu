@@ -28,7 +28,7 @@ public class ProjectinfoDO extends BaseEntity {
 	private String promise;
 	
 	@Column(name="director_user_id",length=10)
-	private String directorUserId;
+	private Integer directorUserId;
 	
 	@Column(name="director_tel",length=20)
 	private String directorTel;
@@ -96,11 +96,13 @@ public class ProjectinfoDO extends BaseEntity {
 		this.promise = promise;
 	}
 
-	public String getDirectorUserId() {
+	
+	
+	public Integer getDirectorUserId() {
 		return directorUserId;
 	}
 
-	public void setDirectorUserId(String directorUserId) {
+	public void setDirectorUserId(Integer directorUserId) {
 		this.directorUserId = directorUserId;
 	}
 

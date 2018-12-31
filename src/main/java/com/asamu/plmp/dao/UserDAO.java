@@ -9,7 +9,7 @@ import com.asamu.plmp.pojo.entity.UserDO;
 
 public interface UserDAO extends JpaRepository<UserDO, Integer>{
 	void deleteById(Integer id);
-	UserDO findUserDOById(Integer userid);
+	UserDO findUserDoById(Integer id);
 	
 	
 
