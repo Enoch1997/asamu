@@ -2,6 +2,8 @@ package com.asamu.plmp.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,12 @@ public class DeclarationService {
 	public List<DeclarationRule> findAll() {
 		// TODO Auto-generated method stub
 		return declartionDAO.findAll();
+	}
+	@Transactional
+	public void updateRule(DeclarationRule declarationRule) {
+		// TODO Auto-generated method stub
+		declartionDAO.save(declarationRule);
+
+		
 	}
 }

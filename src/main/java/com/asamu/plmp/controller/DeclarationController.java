@@ -28,4 +28,11 @@ public class DeclarationController {
 		List<DeclarationRule> declarationRule = declarationService.findAll();
 		return JsonResult.success(declarationRule.get(0));
 	}
+	
+	@RequestMapping("/updateDeclarationRule")
+	@ResponseBody
+	public JsonResult updateDeclarationRule(DeclarationRule declarationRule) {
+		declarationService.updateRule(declarationRule);
+		return JsonResult.success();
+	}
 }
