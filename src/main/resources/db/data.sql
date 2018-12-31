@@ -7,7 +7,7 @@ insert into t_role(id,name,description,create_time,update_time,remarks)
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
 			values(1,'项目','',null,0,1,null,null);
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(2,'我的项目','/welcome',null,1,2,null,null);
+			values(2,'我的项目','/project',null,1,2,null,null);
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
 			values(3,'通知','',null,0,1,null,null);
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 

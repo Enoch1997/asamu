@@ -69,7 +69,7 @@ create table t_role_menu(
 	id 					int unsigned auto_increment comment '主键id',
 	role_id			int unsigned comment '角色id',
 	menu_id			int unsigned comment '菜单id',
-	primary key(role_id,menu_id)
+	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='角色菜单关系表';
 
 
