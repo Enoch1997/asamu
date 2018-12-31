@@ -16,6 +16,11 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
+	public UserDO findByUserId(Integer userid) {
+		
+		return null;
+	}
+	
 	public List<UserDO> findAll() {
 		// TODO Auto-generated method stub
 		return userDAO.findAll();
