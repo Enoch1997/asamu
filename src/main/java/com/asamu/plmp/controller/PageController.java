@@ -3,6 +3,8 @@ package com.asamu.plmp.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.DeclarationRule;
+import com.asamu.plmp.pojo.entity.RoleDO;
 import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.DeclarationService;
 import com.asamu.plmp.service.MenuService;
+import com.asamu.plmp.service.RoleService;
 
 @Controller
 @RequestMapping("/")
@@ -24,6 +28,9 @@ public class PageController {
 	
 	@Autowired
 	private DeclarationService declarationService;
+	
+    @Resource
+    RoleService roleService;
 	
 	@RequestMapping("index")
 	public String index() {
@@ -43,6 +50,16 @@ public class PageController {
 	@RequestMapping("user")
 	public String getUserPage() {
 		return "userlist/userlist";
+	}
+	
+	@RequestMapping("/role")
+	public String getRolePage() {
+		return "systemsetup/role";
+	}
+	
+	@RequestMapping("/menu")
+	public String getMenuPage() {
+		return "systemsetup/menu";
 	}
 	
 	@RequestMapping("/declare/rule")
