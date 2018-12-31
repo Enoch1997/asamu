@@ -14,9 +14,8 @@ public class DeclarationRule extends BaseEntity{
 	@Column(name="rule_content",length=1000)
 	private String ruleContent;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="deadline")
-	private Date deadline;
+	private String deadline;
 
 	public String getRuleContent() {
 		return ruleContent;
@@ -26,11 +25,11 @@ public class DeclarationRule extends BaseEntity{
 		this.ruleContent = ruleContent;
 	}
 
-	public Date getDeadline() {
+	public String getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+</head>
+<link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
+<body style="width: 100%; height: 100%;">
+	<div style="padding: 20px; background-color: #F2F2F2;">
+		<div class="layui-card">
+	        <div class="layui-card-header">申报入口</div>
+	        <div class="layui-card-body">
+		        <fieldset class="layui-elem-field">
+	              <legend>申报规则</legend>
+	              <div class="layui-field-box">
+		              <textarea th:text="${declaration.ruleContent}" class="layui-textarea" id="declareContent" style="height:300px;" readonly="readonly"></textarea><br>
+		              <div class="layui-inline">
+				      <label class="layui-form-label">截止日期：</label>
+				      <label class="layui-form-label" th:text="${declaration.deadline}">截止日期：</label>
+				      </div>
+			   	  </div>
+	            </fieldset>
+	          	<input type="hidden" class="layui-input" id="deadline" th:value="${declaration.deadline}"/>
+			    <div class="layui-form-item" style="margin:10px;">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" onclick="agree()">我同意</button>
+			    </div>
+			  </div>
+	      </div>
+	        </div>
+	        
+	</div>
+</body>
+<script src="/layui/layui.js"></script>
+<script>
+function agree(){
+	var deadline=new Date($("#deadline").val()+' 23:59:59');
+	var now=new Date();
+	if(now<deadline){
+		window.parent.location.href = "/#/declare/project";
+	}else{
+		alert("已截止");
+	}
+}
+</script>
+</html>

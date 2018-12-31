@@ -1,7 +1,7 @@
 drop table if exists t_user;
+drop table if exists t_role_menu;
 drop table if exists t_role;
 drop table if exists t_menu;
-drop table if exists t_role_menu;
 drop table if exists t_projectinfo;
 drop table if exists t_material;
 drop table if exists t_declaration_rule;
@@ -29,7 +29,6 @@ create table t_user(
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='用户表';
 
-insert into t_user(id,username,password,realName,unit,tel,email,create_time,update_time,role_id,status,remarks) values(1,'admin','123456','小明','教育部','110','34@qq.com',null,null,1,1,null);
 
 ##########################
 ##角色表t_role
@@ -44,8 +43,7 @@ create table t_role(
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='角色表';
 
-insert into t_role(id,name,description,create_time,update_time,remarks)
-	values(1,'管理员',null,null,null,null);
+
 
 
 ##########################
@@ -63,18 +61,7 @@ create table t_menu(
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='菜单表';
 
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(1,'项目','',null,0,1,null,null);
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(2,'我的项目','/welcome',null,1,2,null,null);
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(3,'通知','',null,0,1,null,null);
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(4,'我的消息','/message',null,3,2,null,null);
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(5,'用户管理','',null,0,1,null,null);
-insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(6,'用户列表','/user',null,5,1,null,null);
+
 ##########################
 ##角色菜单关系表t_role_menu
 ##########################
@@ -85,10 +72,7 @@ create table t_role_menu(
 	primary key(role_id,menu_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='角色菜单关系表';
 
-insert into t_role_menu(id,role_id,menu_id) values(1,1,1);
-insert into t_role_menu(id,role_id,menu_id) values(2,1,2);
-insert into t_role_menu(id,role_id,menu_id) values(3,1,3);
-insert into t_role_menu(id,role_id,menu_id) values(4,1,4);
+
 
 
 ##########################
@@ -122,7 +106,7 @@ create table t_projectinfo(
 create table t_declaration_rule(
 	id				int unsigned auto_increment comment '主键id',
 	rule_content	varchar(1000) comment '申报规则内容',
-	deadline		datetime comment '截止期限',
+	deadline		date comment '截止期限',
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='申报规则表';
 

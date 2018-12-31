@@ -32,6 +32,7 @@ public class DeclarationController {
 	@RequestMapping("/updateDeclarationRule")
 	@ResponseBody
 	public JsonResult updateDeclarationRule(DeclarationRule declarationRule) {
+		System.out.println(declarationRule.toString());
 		declarationService.updateRule(declarationRule);
 		return JsonResult.success();
 	}
