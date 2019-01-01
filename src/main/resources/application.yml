@@ -17,3 +17,5 @@ spring:
     encoding: UTF-8
     servlet:      content-type: text/html
     mode: HTML5
+server:
+  context-path: /

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+  	<script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<body>
+<div id="container">
+    <div></div>
+    <div class="admin-login-background">
+        <div class="admin-header">
+        <img src="/images/ZSTULogo.jpg" class="admin-logo">
+       
+        </div>
+        <div class="layadmin-user-login-box layadmin-user-login-header admin-logo" style="margin-bottom:8px;"><h1>浙理项目管理平台</h1></div> 
+        <dive id="loginForm" action="">
+            <div>
+                <i class="layui-icon layui-icon-username admin-icon admin-icon-username"></i>
+                <input id="username" type="text" name="username" placeholder="请输入用户名"
+                       autocomplete="off"
+                       class="layui-input admin-input admin-input-username">
+            </div>
+            <div>
+                <i class="layui-icon layui-icon-password admin-icon admin-icon-password"></i>
+                <input id="password" type="password" name="password"
+                       placeholder="请输入密码"
+                       autocomplete="off"
+                       class="layui-input admin-input">
+            </div>
+            <div>
+                <input type="text" name="verify"
+                       placeholder="请输入验证码"
+                       autocomplete="off"
+                       class="layui-input admin-input admin-input-verify">
+                <img class="admin-captcha" id="yanzhengma" src="/images/code1.jpg"
+                     onclick="updateVerify()">
+            </div>
+            <!-- <button class="layui-btn admin-button" onclick="login()">登录</button> -->
+            <button class="layui-btn layui-btn-fluid" onclick="login()">登 录</button>
+			<span th:if="${msg!=null}" style="color:red;">请先登录</span>
+
+        </div>
+    </div>
+</div>
+<script src="/layui/layui.js"></script>
+<script>
+	//验证码
+	var code=1;
+    function updateVerify() {
+    	code++;
+    	code=(code-1)%4+1;
+		$("#yanzhengma").attr("src","images/code"+code+".jpg");
+    }
+
+    //登录
+    function login(){
+    	var username=$("#username").val();
+    	var password=$("#password").val();
+    	if(checklogin()){
+    		//校验通过
+    		$.ajax({
+    	        type: "post",//方法类型
+    	        dataType: "json",//预期服务器返回的数据类型
+    	        url: "/user/login" ,//url
+    	        data: {username:username,password:password},
+    	        success: function (result) {
+    	            if(result.code=="200"){
+    	            	alert("登录成功");
+    	            	window.location.href = "/index";
+    	            }else{
+    	            	alert(result.msg);
+    	            }
+    	        },
+    	        error : function() {
+    	            alert("异常！");
+    	        }
+    	    });
+    	}
+    }
+    
+    //校验登录表单
+    function checklogin(){
+    	if($("#username").val()==""){
+    		alert("请输入用户名");
+    		return false;
+    	}
+    	if($("#password").val()==""){
+    		alert("请输入密码");
+    		return false;
+    	}
+    	return true;
+    }
+</script>
+</body>
+</html>

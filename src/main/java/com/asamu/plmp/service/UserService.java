@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.UserDO;
+import com.asamu.plmp.pojo.vo.JsonResult;
 
 @Service
 public class UserService {
@@ -41,6 +42,22 @@ public class UserService {
 	public void addUser(UserDO user) {
 		// TODO Auto-generated method stub
 		userDAO.save(user);
+	}
+
+	/**
+	 * 登录
+	 * @param user
+	 * @return
+	 */
+	public JsonResult login(UserDO user) {
+		UserDO realUser = userDAO.findByUsername(user.getUsername());
+		if(realUser==null) {
+			return new JsonResult(201,"用户名不存在");
+		}
+		if(!realUser.getPassword().equals(user.getPassword())) {
+			return new JsonResult(201,"密码错误");
+		}
+		return JsonResult.success();
 	}
 	
 
