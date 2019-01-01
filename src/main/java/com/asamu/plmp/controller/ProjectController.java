@@ -22,6 +22,7 @@ public class ProjectController {
 	@Resource
 	ProjectService projectService;
 	
+	
 	//申报项目
 	@RequestMapping("/setProject")
 	@ResponseBody
@@ -52,6 +53,33 @@ public class ProjectController {
 	public JsonResult getProject(Integer id,Integer status) {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProject(id,status);
 		return JsonResult.success(projectinfoDOs);
+	}
+	@RequestMapping("/getProjectById")
+	@ResponseBody
+	public JsonResult getProject(Integer id) {
+		ProjectinfoDO projectinfoDOs = projectService.findProject(id);
+		return JsonResult.success(projectinfoDOs);
+	}
+
+	@RequestMapping("/getProjectByUserId")
+	@ResponseBody
+	public JsonResult getProjectByUserId(Integer id) {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByUserId(id);
+		return JsonResult.success(projectinfoDOs);
+	}
+
+	@RequestMapping("/getProjectByStatus")
+	@ResponseBody
+	public JsonResult getProjectByStatus(Integer status) {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(status);
+		return JsonResult.success(projectinfoDOs);
+	}
+
+	@RequestMapping("/UpdateProjectStatus")
+	@ResponseBody
+	public JsonResult updateProjectStatus(Integer id,Integer status) {
+		projectService.updateProjectStatus(id,status);
+		return JsonResult.success();
 	}
 	
 }

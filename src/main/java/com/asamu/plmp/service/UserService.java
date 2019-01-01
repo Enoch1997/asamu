@@ -7,13 +7,17 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asamu.plmp.dao.RoleDAO;
 import com.asamu.plmp.dao.UserDAO;
+import com.asamu.plmp.pojo.entity.RoleDO;
 import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 
 @Service
 public class UserService {
 
+	@Autowired
+	private RoleDAO roleDAO;
 	@Autowired
 	private UserDAO userDAO;
 	
@@ -24,7 +28,16 @@ public class UserService {
 	
 	public List<UserDO> findAll() {
 		// TODO Auto-generated method stub
-		return userDAO.findAll();
+		List<UserDO> list = userDAO.findAll();
+		Integer size = list.size();
+		for(int i = 0;i < size;i++)
+		{
+			int roleid = list.get(i).getRoleId();
+			RoleDO role = roleDAO.findRoleDOById(roleid);
+			list.get(i).setRolename(role.getName());
+		}
+
+		return list;
 	}
 
 	public void deleteUser(Integer userid) {

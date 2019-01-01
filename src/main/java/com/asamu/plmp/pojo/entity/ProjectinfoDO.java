@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.swing.Spring;
 
 @Entity
 @Table(name="t_projectinfo")
@@ -55,6 +57,38 @@ public class ProjectinfoDO extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_time")
 	private Date updateTime;
+	@Transient
+	private String levelName;
+	@Transient
+	private String directorUserName;
+	@Transient
+	private String statusName;
+	
+	
+	@Transient
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
+	@Transient
+	public String getDirectorUserName() {
+		return directorUserName;
+	}
+
+	public void setDirectorUserName(String directorUserName) {
+		this.directorUserName = directorUserName;
+	}
+	@Transient
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
 
 	public String getName() {
 		return name;
@@ -72,6 +106,7 @@ public class ProjectinfoDO extends BaseEntity {
 		this.applyLevel = applyLevel;
 	}
 
+	
 	public String getField() {
 		return field;
 	}
@@ -170,14 +205,7 @@ public class ProjectinfoDO extends BaseEntity {
 		this.updateTime = updateTime;
 	}
 
-	@Override
-	public String toString() {
-		return "ProjectinfoDO [name=" + name + ", apply_level=" + applyLevel + ", feild=" + field + ", members="
-				+ members + ", promise=" + promise + ", directorUserId=" + directorUserId + ", directorTel="
-				+ directorTel + ", directorEmail=" + directorEmail + ", status=" + status + ", declarationMaterialId="
-				+ declarationMaterialId + ", midterMaterialId=" + midterMaterialId + ", endMaterialId=" + endMaterialId
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
-	}
+	
 	
 	
 }

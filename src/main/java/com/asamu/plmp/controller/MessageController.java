@@ -23,7 +23,6 @@ public class MessageController {
 	@ResponseBody
 	public JsonResult getUserMessage(Integer userId) {
 		List<Message> list = messageService.findMessageByUserId(1);
-		System.out.println(list);
 		return JsonResult.success(list);
 	}
 	
