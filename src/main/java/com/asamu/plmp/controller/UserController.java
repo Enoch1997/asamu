@@ -3,6 +3,7 @@ package com.asamu.plmp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,27 @@ public class UserController {
 	
     @Resource
     UserService userService;
+    
+    /**
+     * 登录
+     * @return
+     */
+    @RequestMapping("/login")
+	@ResponseBody
+	public JsonResult login(UserDO user,HttpSession session) {
+		 JsonResult result = userService.login(user);
+		 if(result.getCode()==200) {
+			 session.setAttribute("user", user);
+		 }
+		 return result;
+	}
 	
+    @RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		 session.removeAttribute("user");
+		 return "login";
+	}
+    
 	@RequestMapping("/getUsers")
 	@ResponseBody
 	public JsonResult getUsers() {

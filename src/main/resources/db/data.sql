@@ -43,3 +43,6 @@ insert into t_role_menu(id,role_id,menu_id) values(11,1,11);
 insert into t_role_menu(id,role_id,menu_id) values(12,1,12);
 
 insert into t_declaration_rule(id,rule_content,deadline) values(1,'申报规则1231321',null);
+
+insert into t_projectinfo(id,name,apply_level,field,members,promise,director_user_id,status,declaration_material_id)
+	values(1,"基于深度学习的遗传算法",1,"深度学习","胡喜乐,胡喜乐,胡喜乐","我承诺...",1,0,1);

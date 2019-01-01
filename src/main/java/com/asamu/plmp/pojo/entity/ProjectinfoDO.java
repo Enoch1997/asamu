@@ -15,11 +15,11 @@ public class ProjectinfoDO extends BaseEntity {
 	@Column(length=50)
 	private String name;
 	
-	@Column(length=50)
-	private String apply_level;
+	@Column(length=50,name="apply_level")
+	private String applyLevel;
 	
 	@Column(length=50)
-	private String feild;
+	private String field;
 	
 	@Column(length=255)
 	private String members;
@@ -64,20 +64,20 @@ public class ProjectinfoDO extends BaseEntity {
 		this.name = name;
 	}
 
-	public String getApply_level() {
-		return apply_level;
+	public String getApplyLevel() {
+		return applyLevel;
 	}
 
-	public void setApply_level(String apply_level) {
-		this.apply_level = apply_level;
+	public void setApplyLevel(String applyLevel) {
+		this.applyLevel = applyLevel;
 	}
 
-	public String getFeild() {
-		return feild;
+	public String getField() {
+		return field;
 	}
 
-	public void setFeild(String feild) {
-		this.feild = feild;
+	public void setField(String field) {
+		this.field = field;
 	}
 
 	public String getMembers() {
@@ -172,7 +172,7 @@ public class ProjectinfoDO extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "ProjectinfoDO [name=" + name + ", apply_level=" + apply_level + ", feild=" + feild + ", members="
+		return "ProjectinfoDO [name=" + name + ", apply_level=" + applyLevel + ", feild=" + field + ", members="
 				+ members + ", promise=" + promise + ", directorUserId=" + directorUserId + ", directorTel="
 				+ directorTel + ", directorEmail=" + directorEmail + ", status=" + status + ", declarationMaterialId="
 				+ declarationMaterialId + ", midterMaterialId=" + midterMaterialId + ", endMaterialId=" + endMaterialId

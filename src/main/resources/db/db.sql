@@ -82,7 +82,7 @@ create table t_projectinfo(
 	id 					int unsigned auto_increment comment '主键id',
 	name 				varchar(50) not null comment '项目名称',
 	apply_level			tinyint unsigned not null comment '申报级别:1校级一类2校级二类',
-	feild				varchar(50) comment '所属专业或领域',
+	field				varchar(50) comment '所属专业或领域',
 	members				varchar(255) comment '项目成员：成员用户,(英文逗号)隔开',
 	promise 			varchar(1000) comment '立项承诺',
 	director_user_id	int unsigned not null comment '负责人id',
@@ -98,6 +98,8 @@ create table t_projectinfo(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='项目信息表';
 ##ps::项目状态:0保存1已提交2初审通过3立项评审中4立项评审完成
 ##			  5立项6不立项7中期检查通过8中期检查待整9已结题10结题验收整改
+
+
 
 
 ##########################

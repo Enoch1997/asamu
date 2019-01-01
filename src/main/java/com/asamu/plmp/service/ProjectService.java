@@ -25,5 +25,9 @@ public class ProjectService {
 		// TODO Auto-generated method stub
 		return projectDAO.findByIdAndStatus(directorUserId,status);
 	}
+	
+	public ProjectinfoDO getProjectById(Integer id) {
+		return  projectDAO.findById(id).get();
+	}
 
 }
