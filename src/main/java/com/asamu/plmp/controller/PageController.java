@@ -43,8 +43,13 @@ public class PageController {
 		return "login";
 	}
     
-	@RequestMapping("index")
+	@RequestMapping("/")
 	public String index() {
+		return "index";
+	}
+	
+	@RequestMapping("/index")
+	public String index1() {
 		return "index";
 	}
 	
