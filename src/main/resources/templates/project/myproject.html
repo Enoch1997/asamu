@@ -7,10 +7,10 @@
 <body style="width: 100%; height: 100%;">
 	<div style="padding: 20px; background-color: #F2F2F2;">
 		<div class="layui-card">
-	        <div class="layui-card-header">用户列表</div>
+	        <div class="layui-card-header">我的项目</div>
 	        <div class="layui-card-body">
 		        <div style="padding-bottom: 10px;">
-		          <button class="layui-btn layuiadmin-btn-role" onclick="addUser()" data-type="add">添加</button>
+		          <button class="layui-btn layuiadmin-btn-role" onclick="addUser()" data-type="add">申请</button>
 		        </div>
 	          	<table class="layui-hide" id="test" lay-filter="test"></table>
 	        </div>
@@ -24,17 +24,17 @@ layui.use('table', function(){
 	  
 	  table.render({
 		    elem: '#test'
-		    ,url:'/user/getUsers'
+		    ,url:'/project/getProjectByUserId?id=1'
 		    ,cols: [[
 		      {type:'checkbox'}
 		      ,{field:'id',hide:true}
-		      ,{field:'username', title: '用户名',align:'center',width:200}
-		      ,{field:'realName', title: '姓名',align:'center',width:200}
-		      ,{field:'unit', title: '所属部门',align:'center',width:200}
-		      ,{field:'tel', title: '电话',align:'center',width:200}
-		      ,{field:'email', title: '邮箱',align:'center',width:200}
-		      ,{field:'rolename', title: '用户角色',align:'center',width:200}
-		      ,{field:'remarks', title: '',align:'center',width:200,toolbar: '#barDemo'}
+		      ,{field:'name', title: '项目名称',align:'center',width:250}
+		      ,{field:'levelName', title: '项目等级',align:'center',width:100}
+		      ,{field:'field', title: '所属专业或领域',align:'center',width:200}
+		      ,{field:'directorUserName', title: '项目负责人',align:'center',width:100}
+		      ,{field:'directorTel', title: '负责人电话',align:'center',width:195}
+		      ,{field:'statusName', title: '项目状态',align:'center',width:100}
+		      ,{field:'remarks', title: '查看',align:'center',width:200,toolbar: '#barDemo'}
 		    ]]
 		    ,page: true
 		    ,response: {
@@ -69,8 +69,7 @@ layui.use('table', function(){
 	}
 </script>
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">查看详情</a>
 </script>
 
 </html>

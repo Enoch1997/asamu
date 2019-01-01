@@ -28,6 +28,7 @@ public class Message extends BaseEntity{
 	@Column(name="is_read")
 	private Integer isRead;
 	
+	@Transient
 	private String remark;
 	
 	@Transient
@@ -70,8 +71,8 @@ public class Message extends BaseEntity{
 		this.content = content;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public String getCreateTime() {
+		return createTime.toString();
 	}
 
 	public void setCreateTime(Date createTime) {

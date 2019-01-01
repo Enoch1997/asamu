@@ -3,6 +3,8 @@ package com.asamu.plmp.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.asamu.plmp.dao.MessageDAO;
@@ -24,6 +26,11 @@ public class MessageService {
 		list1.get(i).setRemark();
 		}
 	   return list1;
-	    
+	}
+	
+	@Transactional
+	public void updateMessageById(Integer id,Integer isRead)
+	{
+		messageDAO.updateIsRead(id,isRead);
 	}
 }
