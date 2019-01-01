@@ -27,7 +27,7 @@ public class MenuDO extends BaseEntity{
 	private String description;
 	
 	private Integer pid;
-	
+	@Transient
 	private String pname;
 	
 	

@@ -17,7 +17,7 @@ create table t_user(
 	id				int unsigned auto_increment comment '主键id',
 	username		varchar(50) not null comment '用户名',
 	password		varchar(50) not null comment '密码',
-	realName		varchar(50) comment '真实姓名',
+	real_name		varchar(50) comment '真实姓名',
 	unit			varchar(50) comment '所属部门',
 	tel 			varchar(20) comment '手机号',
 	email  			varchar(50) comment '邮箱',
