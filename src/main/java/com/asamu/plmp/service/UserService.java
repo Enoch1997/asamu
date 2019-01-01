@@ -2,15 +2,12 @@ package com.asamu.plmp.service;
 
 import java.util.List;
 
-import javax.persistence.Transient;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.asamu.plmp.dao.RoleDAO;
 import com.asamu.plmp.dao.UserDAO;
-import com.asamu.plmp.pojo.entity.RoleDO;
 import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 
@@ -20,9 +17,6 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@Autowired
-	private RoleDAO roleDAO;
-	
 	public UserDO findUserById(Integer userid) {
 		
 		return userDAO.findUserDoById(userid);
@@ -30,17 +24,7 @@ public class UserService {
 	
 	public List<UserDO> findAll() {
 		// TODO Auto-generated method stub
-		
-		List<UserDO> list = userDAO.findAll();
-		Integer size = list.size();
-		for(int i = 0;i < size;i++)
-		{
-			int roleid = list.get(i).getRoleId();
-			RoleDO role = roleDAO.findRoleDOById(roleid);
-			list.get(i).setRolename(role.getName());
-		}
-		
-		return list;
+		return userDAO.findAll();
 	}
 
 	public void deleteUser(Integer userid) {
@@ -73,7 +57,7 @@ public class UserService {
 		if(!realUser.getPassword().equals(user.getPassword())) {
 			return new JsonResult(201,"密码错误");
 		}
-		return JsonResult.success();
+		return JsonResult.success(realUser);
 	}
 	
 

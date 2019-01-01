@@ -1,8 +1,9 @@
 //获取菜单
+var id=$("#userId").val();
 $.ajax({
     type: "post",
     dataType: "json",
-    data:{userId:1},
+    data:{userId:id},
     url: "/getUserMenu",
     success: function (data) {
         if (data.code == 200) {
@@ -27,6 +28,27 @@ $.ajax({
         		}
         	}
         	
+        }
+    },
+    error: function (data) {
+        alert("服务器出错！");
+    }
+});
+
+//判断是否有消息
+$.ajax({
+    type: "post",
+    dataType: "json",
+    data:{userId:id},
+    url: "/message/getUserMessage",
+    success: function (data) {
+        if (data.code == 200) {
+            var msg=data.data;
+        	if(msg!=''){
+        		$("#redSpot").show();
+        	}else{
+        		$("#redSpot").hide();
+        	}
         }
     },
     error: function (data) {

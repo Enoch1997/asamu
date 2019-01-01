@@ -30,7 +30,7 @@ public class UserController {
 	public JsonResult login(UserDO user,HttpSession session) {
 		 JsonResult result = userService.login(user);
 		 if(result.getCode()==200) {
-			 session.setAttribute("user", user);
+			 session.setAttribute("user", result.getData());
 		 }
 		 return result;
 	}

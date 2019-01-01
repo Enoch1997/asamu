@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 /**
  * 用户实体
@@ -56,17 +55,6 @@ public class UserDO extends BaseEntity{
 	
 	@Column
 	private Integer remarks;
-	
-	@Transient
-	private String rolename;
-	@Transient
-	public String getRolename() {
-		return rolename;
-	}
-
-	public void setRolename(String rolename) {
-		this.rolename = rolename;
-	}
 
 	public String getUsername() {
 		return username;

@@ -23,9 +23,15 @@ public class MessageController {
 	@ResponseBody
 	public JsonResult getUserMessage(Integer userId) {
 		List<Message> list = messageService.findMessageByUserId(1);
-		System.out.println(list.get(0).getCreateTime());
+		System.out.println(list);
 		return JsonResult.success(list);
 	}
 	
+	@RequestMapping("/read")
+	@ResponseBody
+	public JsonResult messageRead(Integer id,Integer status) {
+		messageService.updateMessageById(id, status);
+		return JsonResult.success();
+	}
 
 }

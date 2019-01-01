@@ -1,6 +1,7 @@
 package com.asamu.plmp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -75,11 +76,6 @@ public class PageController {
 	@RequestMapping("/menu")
 	public String getMenuPage() {
 		return "systemsetup/menu";
-	}
-	
-	@RequestMapping("/project")
-	public String getprojectPage() {
-		return "project/myproject";
 	}
 	
 	@RequestMapping("/declare/rule")

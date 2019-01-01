@@ -16,11 +16,12 @@
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" lay-unselect="">
-        <a href="http://www.baidu.com" layadmin-event="message">
-          <i class="layui-icon layui-icon-notice"></i><span class="layui-badge-dot"></span>
+        <a href="javascript:changeMenu('/message');" layadmin-event="message">
+          <i class="layui-icon layui-icon-notice"></i><span class="layui-badge-dot" id="redSpot" style="display:none"></span>
         </a>
       </li>
       <li class="layui-nav-item">
+      <input type="hidden" id="userId" th:value="${session.user.id}"/>
         <a href="javascript:;">
           <img src="http://t.cn/RCzsdCq" th:text="${session.user.username}" class="layui-nav-img">
           您好

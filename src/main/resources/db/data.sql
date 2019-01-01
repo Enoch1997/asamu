@@ -17,7 +17,7 @@ insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_tim
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
 			values(2,'我的项目','/project',null,1,2,null,null);
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
-			values(3,'我的项目','/project/list',null,1,2,null,null);
+			values(3,'项目列表','/project/list',null,1,2,null,null);
 
 insert into t_menu(id,name,uri,description,pid,menu_level,create_time,update_time) 
 			values(4,'申报管理','',null,0,1,null,null);
