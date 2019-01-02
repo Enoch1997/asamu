@@ -1,6 +1,7 @@
 package com.asamu.plmp.service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,20 +21,25 @@ public class MaterialService {
 		if(file.isEmpty()) {
 			return new JsonResult(201,"上传失败！上传文件为空");
 		}
-		
+		String fileName = file.getOriginalFilename();
+		//System.out.println(fileName);
 		String url = FileUtil.fileOne(file, dECLARATION_URL);
 		if(url==null) {
 			return new JsonResult(201,"上传失败！");
 		}
 		Material material=new Material();
-		material.setName(file.getName());
+		material.setName(fileName);
 		material.setUrl(url);
 		material.setCreateTime(new Date());
 		
 		materialDAO.save(material);
 		
-		
 		return JsonResult.success(material);
+	}
+	
+	public Material getById(Integer id) {
+		Optional<Material> o = materialDAO.findById(id);
+		return o.get();
 	}
 
 }

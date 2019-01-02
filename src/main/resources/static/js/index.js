@@ -44,11 +44,15 @@ $.ajax({
     success: function (data) {
         if (data.code == 200) {
             var msg=data.data;
-        	if(msg!=''){
+            for(var m in msg){
+            	if(msg[m].isRead=="0")
+            		$("#redSpot").show();
+            }
+/*        	if(msg!=''){
         		$("#redSpot").show();
         	}else{
         		$("#redSpot").hide();
-        	}
+        	}*/
         }
     },
     error: function (data) {
