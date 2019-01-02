@@ -79,9 +79,9 @@ public class PageController {
 	
 	@RequestMapping("/declare/rule")
 	public String setRulePage(Model model) {
-		List<DeclarationRule> list = declarationService.findAll();
+		List<DeclarationRule> list = declarationService.findByType(0);
 		if(list==null) {
-			//System.out.println("list为nullnullnullnullnullnull");
+			//System.out.println("list为null");
 		}else {
 			model.addAttribute("declaration", list.get(0));
 		}
@@ -89,11 +89,35 @@ public class PageController {
 		return "declare/rule";
 	}
 	
+	@RequestMapping("/mid/set")
+	public String setMidRulePage(Model model) {
+		List<DeclarationRule> list = declarationService.findByType(1);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		
+		return "mid/rule";
+	}
+	
+	@RequestMapping("/end/set")
+	public String setEndRulePage(Model model) {
+		List<DeclarationRule> list = declarationService.findByType(2);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		
+		return "end/rule";
+	}
+	
 	@RequestMapping("/declare/entry")
 	public String EntryPage(Model model) {
 		List<DeclarationRule> list = declarationService.findAll();
 		if(list==null) {
-			//System.out.println("list为nullnullnullnullnullnull");
+			//System.out.println("list为null");
 		}else {
 			model.addAttribute("declaration", list.get(0));
 		}

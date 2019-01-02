@@ -10,10 +10,10 @@
 		<div class="layui-card">
 		<input type="hidden" class="layui-input" id="id" th:value="${declaration.id}" />
 		<input type="hidden" class="layui-input" id="type" th:value="${declaration.type}" />
-	        <div class="layui-card-header">申报规则设置</div>
+	        <div class="layui-card-header">结题答辩</div>
 	        <div class="layui-card-body">
 	          	<div class="layui-form-item layui-form-text">
-				    <label class="layui-form-label">申报规则：</label>
+				    <label class="layui-form-label">材料说明：</label>
 				    <div class="layui-input-block">
 				      <textarea placeholder="请输入申报规则" class="layui-textarea" id="declareContent" style="height:200px;" th:text="${declaration.ruleContent}"></textarea>
 				    </div>

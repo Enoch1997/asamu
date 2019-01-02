@@ -107,6 +107,7 @@ create table t_projectinfo(
 ##########################
 create table t_declaration_rule(
 	id				int unsigned auto_increment comment '主键id',
+	type			tinyint comment '类型0申报规则1中期材料说明2结题材料说明',
 	rule_content	varchar(1000) comment '申报规则内容',
 	deadline		date comment '截止期限',
 	primary key(id)
@@ -146,11 +147,7 @@ create table t_material(
 create table t_material_review(
 	id 						int unsigned auto_increment comment '主键id',
 	project_id 				int unsigned not null comment '项目id',
-	project_name 			varchar(50) comment '项目名称',
 	project_period			tinyint unsigned not null comment '项目阶段:1中期检查2结题答辩',
-	finish_time 			datetime comment '完成时间',
-	deadline				datetime comment '截止期限',
-	material_description	varchar(255) comment '需要上传材料说明',
 	review_result			tinyint unsigned comment '审查结果:0未处理1通过2驳回',
 	reject_reason			varchar(255) comment '驳回理由',
 	primary key(id) 

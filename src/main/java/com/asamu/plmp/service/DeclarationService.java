@@ -27,4 +27,8 @@ public class DeclarationService {
 
 		
 	}
+	public List<DeclarationRule> findByType(Integer type) {
+		// TODO Auto-generated method stub
+		return declartionDAO.findByType(type);
+	}
 }
