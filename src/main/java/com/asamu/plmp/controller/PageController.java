@@ -131,4 +131,9 @@ public class PageController {
 	public String getPreProject() {
 		return "declare/check";
 	}
+	
+	@RequestMapping("/declare/expertAllot")
+	public String getExpertAllot() {
+		return "declare/allocation";
+	}
 }

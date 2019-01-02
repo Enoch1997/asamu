@@ -20,10 +20,17 @@ public class DeclareProjectController {
     @Resource
     private ProjectService projectService;
     
-    
-	@RequestMapping("/preCheck")
+	@RequestMapping("/getProjectsByStatus")
 	@ResponseBody
-	public JsonResult getPreProjects() {
+	public JsonResult getProjectsByStatus(Integer status) {
+		List<ProjectinfoDO> declareproDos = projectService.findProjectByStatus(status);
+		return JsonResult.success(declareproDos);
+	}
+	
+	
+	@RequestMapping("/allot")
+	@ResponseBody
+	public JsonResult setAllotion() {
 		Integer status = 1;
 		List<ProjectinfoDO> declareproDos = projectService.findProjectByStatus(status);
 		return JsonResult.success(declareproDos);

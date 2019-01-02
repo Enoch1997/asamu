@@ -1,4 +1,4 @@
-drop table if exists t_user;
+﻿drop table if exists t_user;
 drop table if exists t_role_menu;
 drop table if exists t_role;
 drop table if exists t_menu;
@@ -119,6 +119,7 @@ create table t_declaration_rule(
 create table t_expert_review(
 	id				int unsigned auto_increment comment '主键编号',
 	project_id 		int unsigned not null comment '项目id',
+	expert_id		int unsigned not null comment '专家id',
 	score			int unsigned comment '评分',
 	comment 		varchar(255) comment '评语',
 	primary key(id)

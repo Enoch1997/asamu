@@ -11,6 +11,7 @@ import com.asamu.plmp.dao.ProjectDAO;
 import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.entity.UserDO;
+import com.asamu.plmp.util.ProjectUtil;
 
 @Service
 public class ProjectService {
@@ -19,6 +20,8 @@ public class ProjectService {
 	private ProjectDAO projectDAO;
 	@Autowired
 	private UserDAO userDAO;
+	
+	private ProjectUtil projectUtil = new ProjectUtil();
 	
 	public void saveProject(ProjectinfoDO projectinfoDO) {
 		// TODO Auto-generated method stub
@@ -38,9 +41,23 @@ public class ProjectService {
 	}
 	
 	@Transactional
-	public List<ProjectinfoDO> findProjectByStatus(Integer id) {
+	public List<ProjectinfoDO> findProjectByStatus(Integer status) {
 		// TODO Auto-generated method stub
-		return projectDAO.findByStatus(id);
+		List<ProjectinfoDO> list = projectDAO.findByStatus(status);
+		Integer size = list.size();
+		
+		for (int i = 0; i < size; i++) {
+			UserDO userDO = userDAO.findUserDoById(list.get(i).getDirectorUserId());
+			list.get(i).setDirectorUserName(userDO.getRealName());
+		}
+		
+		List<ProjectinfoDO> list2 = projectUtil.reLevelName(size, list);
+		
+		for(int i = 0 ; i< size ;i++)
+		{
+			list2.get(i).setStatusName("等待初审");
+		}
+		return list2;
 	}
 	
 	public ProjectinfoDO getProjectById(Integer id) {
@@ -58,62 +75,17 @@ public class ProjectService {
 		// TODO Auto-generated method stub
 		List<ProjectinfoDO> list = projectDAO.findByUserId(id);
 		UserDO userDO = userDAO.findUserDoById(id);
-		int size = list.size();
-		for (int i = 0; i < size; i++) {
-			list.get(i).setDirectorUserName(userDO.getRealName());
-			if(list.get(i).getApplyLevel().equals("1"))
-			{
-				list.get(i).setLevelName("校级一类");
-			}
-			else if(list.get(i).getApplyLevel().equals("2"))
-			{
-				list.get(i).setLevelName("校级二类");
-			}
-			else {
-				list.get(i).setLevelName("");
-			}
-			
-			Integer tempInteger = list.get(i).getStatus();
-			switch (tempInteger) {
-			case 0:
-			    list.get(i).setStatusName("保存");
-			    break;
-			case 1:
-				list.get(i).setStatusName("已提交");
-			    break;
-			case 2:
-				list.get(i).setStatusName("初审通过");
-			    break;
-			case 3:
-			    list.get(i).setStatusName("立项评审中");
-			    break;
-			case 4:
-				list.get(i).setStatusName("立项评审完成");
-			    break;
-			case 5:
-				list.get(i).setStatusName("立项");
-			    break;
-			case 6:
-			    list.get(i).setStatusName("不立项");
-			    break;
-			case 7:
-				list.get(i).setStatusName("中期检查通过");
-			    break;
-			case 8:
-				list.get(i).setStatusName("中期检查待整");
-			    break;
-			case 9:
-				list.get(i).setStatusName("已结题");
-			    break;
-			case 10:
-				list.get(i).setStatusName("结题验收整改");
-			    break;
-			default:
-				list.get(i).setStatusName("");
-			}
-		}
+		Integer size = list.size();
+		String name = userDO.getRealName();
 		
-		return list;
+		for(int i = 0; i < size ; i++)
+		{
+			list.get(i).setDirectorUserName(name);
+		}
+		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
+		List<ProjectinfoDO> list2 = projectUtil.reStatusName(size, list1);
+		
+		return list2;
 	}
 
 

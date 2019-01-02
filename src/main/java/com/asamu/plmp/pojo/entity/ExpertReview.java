@@ -10,11 +10,22 @@ public class ExpertReview extends BaseEntity{
 	@Column(name="project_id",length=5)
 	private Integer projectId;
 	
+	@Column(name="expert_id",length=5)
+	private Integer expertId;
+	
 	@Column(length=5)
 	private Integer score;
 	
 	@Column(length=255)
 	private String comment;
+	
+	public Integer getExpertId() {
+		return expertId;
+	}
+
+	public void setExpertId(Integer expertId) {
+		this.expertId = expertId;
+	}
 
 	public Integer getProjectId() {
 		return projectId;
@@ -42,10 +53,7 @@ public class ExpertReview extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "ExpertReview [projectId=" + projectId + ", score=" + score + ", comment=" + comment + "]";
+		return "ExpertReview [projectId=" + projectId + ", expertId=" + expertId + ", score=" + score + ", comment="
+				+ comment + "]";
 	}
-	
-	
-	
-	
 }
