@@ -6,7 +6,7 @@ $.ajax({
     data:{userId:id},
     url: "/getUserMenu",
     success: function (data) {
-        if (data.code == 200) {
+        if (data.code == "200") {
             //alert(data.data.username);
         	var menus=data.data;
         	var menuUl=$("#menu");

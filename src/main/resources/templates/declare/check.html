@@ -34,7 +34,7 @@ layui.use('table', function(){
 		      ,{field:'directorTel', title: '负责人电话',align:'center',width:195}
 		      ,{field:'statusName', title: '项目状态',align:'center',width:100}
 		      ,{field:'remarks', title: '操作',align:'center',width:200,toolbar: '#barDemo'}
-		      ,{field:'remarks', title: '通过',align:'center',width:200,toolbar: '#barDemo1'}	      
+		      ,{field:'remarks', title: '是否通过',align:'center',width:200,toolbar: '#barDemo1'}	      
 		    ]]
 		    ,page: true
 		    ,response: {
@@ -58,15 +58,6 @@ layui.use('table', function(){
 	  });
 	});
 	
-	function addUser(){
-		layer.open({
-			  type: 1,
-			  skin: 'layui-layer-rim', //加上边框
-			  area: ['420px', '240px'], //宽高
-			  content: 'html内容',
-			  btn: ['保存','关闭']
-			});
-	}
 </script>
  <script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script type="text/html" id="barDemo">
@@ -79,7 +70,7 @@ layui.use('table', function(){
 	  //监听工具条
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
-	    if(obj.event === 'download'){
+	    if(obj.event == 'download'){
 	      layer.msg('正在下载');
 	      /* $.ajax({
 	    	    type: "post",
@@ -94,8 +85,26 @@ layui.use('table', function(){
 	    	    }
 	    	}); */
 	      window.location.href="/download?id="+data.declarationMaterialId;
-	    } else if(obj.event === 'detail'){
+	    } else if(obj.event == 'detail'){
 	      alert("查看");
+	    } else if(obj.event == 'pass'){//通过
+	    	$.ajax({
+	    	    type: "post",
+	    	    dataType: "json",
+	    	    data:{id:data.id,status:2},
+	    	    url: "/project/UpdateProjectStatus",
+	    	    success: function (data) {
+	    	    	if(data.code=="200"){
+	    	    		alert("操作成功!");
+	    	    		window.parent.location.href = "/#/declare/project";
+	    	    	}
+	    	    },
+	    	    error: function (data) {
+	    	        alert("服务器出错！");
+	    	    }
+	    	});
+	    } else if(obj.event == 'unpass'){//不通过
+	      alert("项目不通过");
 	    } 
 	  });
 	  
