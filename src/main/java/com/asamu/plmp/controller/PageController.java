@@ -123,8 +123,13 @@ public class PageController {
 
 	
 	@RequestMapping("/project")
-	public String getprojectPage() {
+	public String getProjectPage() {
 		return "project/myproject";
+	}
+	
+	@RequestMapping("/project/list")
+	public String getAllProjectPage() {
+		return "project/projectlist";
 	}
 
 	@RequestMapping("/declare/check")
