@@ -22,7 +22,8 @@
 				    <div class="layui-inline">
 				      <label class="layui-form-label">负责人</label>
 				      <div class="layui-input-inline">
-				        <input type="text" id="director" autocomplete="off" class="layui-input" readonly="readonly">
+				        <input type="text" id="director" th:value="${session.user.realName}" autocomplete="off" class="layui-input" readonly="readonly">
+				        <input type="hidden" id="directorId" th:value="${session.user.id}"/>
 				      </div>
 				    </div>
 				    <div class="layui-inline">
@@ -34,7 +35,7 @@
 				    <div class="layui-inline">
 				      <label class="layui-form-label">所属专业</label>
 					    <div class="layui-input-inline">
-					      <input type="text" name="field" id="field" autocomplete="off" placeholder="专业或领域" class="layui-input">
+					      <input type="text" name="field" id="field" autocomplete="off" placeholder="填写专业或领域" class="layui-input">
 					    </div>
 				    </div>
 				 </div>
@@ -133,7 +134,6 @@ if(flag=="true"){
 	$("#promise").val(promise);
 	$("#name").val(name);
 	$("#applyLevel"+applyLevel).attr("selected",true);
-	$("#director").val(directorUserId);
 	$("#declarationMaterialId").val(declarationMaterialId);
 	if(declarationMaterialId!=null){
 		$("#flag").attr("hidden",false);
@@ -151,6 +151,7 @@ function save(status){
 	var promise=$("#promise").val();
 	var applyLevel=$("#applyLevel").val();
 	var directorUserId=$("#director").val();
+	var directorId=$("#directorId").val();
 	var declarationMaterialId=$("#declarationMaterialId").val();
 	if(declarationMaterialId=="0"){
 		alert("请上传申报书");
@@ -170,7 +171,7 @@ function save(status){
 				applyLevel:applyLevel,
 				field:field,
 				members:members,
-				directorUserId:1,
+				directorUserId:directorId,
 				directorTel:directorTel,
 				promise:promise,
 				status:status,
@@ -180,6 +181,7 @@ function save(status){
 			success:function (data){
 				if(data.code==200){
 					alert("保存成功");
+					window.parent.location.href = "/#/project";
 				}
 			},
 			error:function(data){
@@ -197,7 +199,7 @@ function save(status){
 				applyLevel:applyLevel,
 				field:field,
 				members:members,
-				directorUserId:directorUserId,
+				directorUserId:directorId,
 				directorTel:directorTel,
 				promise:promise,
 				status:status,
@@ -207,6 +209,7 @@ function save(status){
 			success:function (data){
 				if(data.code==200){
 					alert("保存成功");
+					window.parent.location.href = "/#/project";
 				}
 			},
 			error:function(data){
