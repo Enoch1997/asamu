@@ -72,6 +72,12 @@ public class UserService {
 		}
 		return JsonResult.success(realUser);
 	}
+
+	public List<UserDO> findByRoleId(Integer roleId) {
+		// TODO Auto-generated method stub
+		List<UserDO> list = userDAO.findByRoleID(roleId);
+		return list;
+	}
 	
 
 

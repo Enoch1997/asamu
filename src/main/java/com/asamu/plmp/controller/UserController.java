@@ -70,6 +70,12 @@ public class UserController {
 		return JsonResult.success();
 	}
 	
-	
+	@RequestMapping("/getUsersByRole")
+	@ResponseBody
+	public JsonResult getUsers(Integer roleId) {
+		List<UserDO> list = userService.findByRoleId(roleId);
+		System.out.println(list);
+		return JsonResult.success(list);
+	}
 	
 }
