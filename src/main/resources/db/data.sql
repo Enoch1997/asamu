@@ -95,7 +95,7 @@ insert into t_role_menu(id,role_id,menu_id) values(23,1,23);
 insert into t_role_menu(id,role_id,menu_id) values(24,1,24);
 insert into t_role_menu(id,role_id,menu_id) values(25,1,25);
 
-insert into t_declaration_rule(id,rule_content,deadline) values(1,'第一章  校级“三创”项目
+insert into t_declaration_rule(id,type,rule_content,deadline) values(1,0,'第一章  校级“三创”项目
 
 　　第一条 校内外在读本科生均可申报，但项目最终完成时间与结项时间应早于标准学制内最早毕业的团队成员毕业时间2个月以上，并还须满足以下条件：
 

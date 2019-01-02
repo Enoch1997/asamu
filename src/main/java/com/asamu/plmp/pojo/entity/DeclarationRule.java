@@ -16,6 +16,16 @@ public class DeclarationRule extends BaseEntity{
 	
 	@Column(name="deadline")
 	private String deadline;
+	
+	private Integer type;
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	public String getRuleContent() {
 		return ruleContent;
@@ -35,7 +45,7 @@ public class DeclarationRule extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "DeclarationRule [ruleContent=" + ruleContent + ", deadline=" + deadline + "]";
+		return "DeclarationRule [ruleContent=" + ruleContent + ", deadline=" + deadline + ", type=" + type + "]";
 	}
 	
 	

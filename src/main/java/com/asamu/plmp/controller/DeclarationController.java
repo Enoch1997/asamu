@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asamu.plmp.pojo.entity.DeclarationRule;
@@ -24,8 +25,8 @@ public class DeclarationController {
 	
 	@RequestMapping("/getDeclaration")
 	@ResponseBody
-	public JsonResult getDeclaration() {
-		List<DeclarationRule> declarationRule = declarationService.findAll();
+	public JsonResult getDeclaration(@RequestParam(defaultValue = "0")Integer type) {
+		List<DeclarationRule> declarationRule = declarationService.findByType(type);
 		return JsonResult.success(declarationRule.get(0));
 	}
 	
