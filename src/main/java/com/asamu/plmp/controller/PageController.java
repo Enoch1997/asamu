@@ -120,10 +120,15 @@ public class PageController {
 		return "declare/projectDeclare";
 	}
 	
+
 	
 	@RequestMapping("/project")
 	public String getprojectPage() {
 		return "project/myproject";
 	}
 
+	@RequestMapping("/declare/check")
+	public String getPreProject() {
+		return "declare/check";
+	}
 }
