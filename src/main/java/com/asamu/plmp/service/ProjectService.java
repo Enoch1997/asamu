@@ -51,12 +51,9 @@ public class ProjectService {
 			list.get(i).setDirectorUserName(userDO.getRealName());
 		}
 		
-		List<ProjectinfoDO> list2 = projectUtil.reLevelName(size, list);
+		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
+		List<ProjectinfoDO> list2 =	projectUtil.reStatusName(size, list1);
 		
-		for(int i = 0 ; i< size ;i++)
-		{
-			list2.get(i).setStatusName("等待初审");
-		}
 		return list2;
 	}
 	
@@ -85,6 +82,21 @@ public class ProjectService {
 		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
 		List<ProjectinfoDO> list2 = projectUtil.reStatusName(size, list1);
 		
+		return list2;
+	}
+
+	public List<ProjectinfoDO> findAllProject() {
+		// TODO Auto-generated method stub
+		List<ProjectinfoDO> list = projectDAO.findAll();
+		Integer size = list.size();
+		
+		for (int i = 0; i < size; i++) {
+			UserDO userDO = userDAO.findUserDoById(list.get(i).getDirectorUserId());
+			list.get(i).setDirectorUserName(userDO.getRealName());
+		}
+		
+		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
+		List<ProjectinfoDO> list2 =	projectUtil.reStatusName(size, list1);
 		return list2;
 	}
 

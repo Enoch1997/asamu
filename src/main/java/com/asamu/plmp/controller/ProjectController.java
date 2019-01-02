@@ -82,4 +82,11 @@ public class ProjectController {
 		return JsonResult.success();
 	}
 	
+	@RequestMapping("/getAllProject")
+	@ResponseBody
+	public JsonResult getAllProject() {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findAllProject();
+		return JsonResult.success(projectinfoDOs);
+	}
+	
 }
