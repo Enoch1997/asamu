@@ -162,7 +162,12 @@ public class PageController {
 	}
 	
 	@RequestMapping("/declare/expertAllot")
-	public String getExpertAllot() {
+	public String getExpertAllotPage() {
 		return "declare/allocation";
+	}
+	
+	@RequestMapping("/declare/expertReview")
+	public String getexpertReviewPage() {
+		return "declare/review";
 	}
 }

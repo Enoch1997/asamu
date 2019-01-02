@@ -39,4 +39,12 @@ public class DeclareProjectController {
 		allocationService.setAllocation(projectId,expertId);
 		return JsonResult.success();
 	}
+	
+    //专家评审
+	@RequestMapping("/getProjectsByExpertIdAndStatus")
+	@ResponseBody
+	public JsonResult getProjectsByExpertIdAndStatus(Integer expertId,Integer status) {
+		List<ProjectinfoDO> declareproDos = projectService.findProjectByExpertIdAndStatus(expertId,status);
+		return JsonResult.success(declareproDos);
+	}
 }

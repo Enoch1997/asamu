@@ -13,6 +13,7 @@ public interface ProjectDAO extends JpaRepository<ProjectinfoDO, Integer>{
 	
 	@Query("select u from ProjectinfoDO u where u.directorUserId = ?1 and u.status = ?2")
 	List<ProjectinfoDO> findByIdAndStatus(Integer directorUserId,Integer status);
+	
 	@Query("select u from ProjectinfoDO u where u.directorUserId = ?1")
 	List<ProjectinfoDO> findByUserId(Integer directorUserId);
 
@@ -23,4 +24,7 @@ public interface ProjectDAO extends JpaRepository<ProjectinfoDO, Integer>{
 	@Modifying
 	@Query(value="UPDATE ProjectinfoDO xe SET xe.status= :status WHERE xe.id= :id")
 	void update(@Param("id")Integer id, @Param("status")Integer status);
+
+	@Query("select u from ProjectinfoDO u where u.id = ?1 and u.status = ?2")
+	ProjectinfoDO findByProjectIdAndStatus(Integer id, Integer status);
 }

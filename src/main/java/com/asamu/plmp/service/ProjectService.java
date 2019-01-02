@@ -1,14 +1,18 @@
 package com.asamu.plmp.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asamu.plmp.dao.AllocationDAO;
 import com.asamu.plmp.dao.ProjectDAO;
 import com.asamu.plmp.dao.UserDAO;
+import com.asamu.plmp.pojo.entity.ExpertReview;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.util.ProjectUtil;
@@ -20,6 +24,8 @@ public class ProjectService {
 	private ProjectDAO projectDAO;
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private AllocationDAO allocationDAO;
 	
 	private ProjectUtil projectUtil = new ProjectUtil();
 	
@@ -98,6 +104,29 @@ public class ProjectService {
 		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
 		List<ProjectinfoDO> list2 =	projectUtil.reStatusName(size, list1);
 		return list2;
+	}
+
+	public List<ProjectinfoDO> findProjectByExpertIdAndStatus(Integer expertId, Integer status) {
+		// TODO Auto-generated method stub
+		List<ExpertReview> list = allocationDAO.findByExpertId(expertId);
+		Integer size = list.size();
+		List<ProjectinfoDO> list1 = new ArrayList<>();
+		for(int i = 0; i< size ; i++)
+		{
+			ProjectinfoDO projectinfoDO = projectDAO.findByProjectIdAndStatus(list.get(i).getProjectId(),status);
+			if(projectinfoDO != null)
+			{
+				String name = userDAO.findUserDoById(projectinfoDO.getDirectorUserId()).getRealName();
+				projectinfoDO.setDirectorUserName(name);
+				list1.add(projectinfoDO);
+			}
+		}
+		Integer listSize = list1.size();
+		 list1 = projectUtil.reLevelName(listSize, list1);
+		 list1 = projectUtil.reStatusName(listSize, list1);
+		
+		
+		return list1;
 	}
 
 
