@@ -31,6 +31,8 @@ public class MaterialController {
 	
 	
 	private final String DECLARATION_URL="d:\\asamu\\申报书\\";
+	private final String MID_MATERIAL_URL="d:\\asamu\\中期材料\\";
+	
 	/**
      * @function 上传申报书
      * @param file
@@ -43,6 +45,22 @@ public class MaterialController {
 	        return new JsonResult(201,"上传失败！上传文件为空");
 	    }else{
 	        return materialService.saveMaterial(file,DECLARATION_URL);
+	    }
+	
+	}
+	
+	/**
+     * @function 上传中期检查材料
+     * @param file
+     * @return
+     */
+	@RequestMapping("/upload/midMaterial")
+	@ResponseBody
+	public JsonResult uploadMidMaterial(@RequestParam(value = "file", required = false) MultipartFile file){
+	    if(file == null){
+	        return new JsonResult(201,"上传失败！上传文件为空");
+	    }else{
+	        return materialService.saveMaterial(file,MID_MATERIAL_URL);
 	    }
 	
 	}

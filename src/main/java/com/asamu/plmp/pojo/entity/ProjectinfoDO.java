@@ -45,7 +45,7 @@ public class ProjectinfoDO extends BaseEntity {
 	private Integer declarationMaterialId;
 	
 	@Column(name="midterm_material_id",length=5)
-	private Integer midterMaterialId;
+	private Integer midtermMaterialId;
 	
 	@Column(name="end_material_id",length=5)
 	private Integer endMaterialId;
@@ -173,12 +173,12 @@ public class ProjectinfoDO extends BaseEntity {
 		this.declarationMaterialId = declarationMaterialId;
 	}
 
-	public Integer getMidterMaterialId() {
-		return midterMaterialId;
+	public Integer getMidtermMaterialId() {
+		return midtermMaterialId;
 	}
 
-	public void setMidterMaterialId(Integer midterMaterialId) {
-		this.midterMaterialId = midterMaterialId;
+	public void setMidtermMaterialId(Integer midtermMaterialId) {
+		this.midtermMaterialId = midtermMaterialId;
 	}
 
 	public Integer getEndMaterialId() {
@@ -203,6 +203,16 @@ public class ProjectinfoDO extends BaseEntity {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	@Override
+	public String toString() {
+		return "ProjectinfoDO [name=" + name + ", applyLevel=" + applyLevel + ", field=" + field + ", members="
+				+ members + ", promise=" + promise + ", directorUserId=" + directorUserId + ", directorTel="
+				+ directorTel + ", directorEmail=" + directorEmail + ", status=" + status + ", declarationMaterialId="
+				+ declarationMaterialId + ", midtermMaterialId=" + midtermMaterialId + ", endMaterialId="
+				+ endMaterialId + ", createTime=" + createTime + ", updateTime=" + updateTime + ", levelName="
+				+ levelName + ", directorUserName=" + directorUserName + ", statusName=" + statusName + "]";
 	}
 
 	

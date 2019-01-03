@@ -18,6 +18,7 @@
 		              <div class="layui-inline">
 				      <label class="layui-form-label">截止日期：</label>
 				      <label class="layui-form-label" th:text="${declaration.deadline}"></label>
+				      <input type="hidden" class="layui-input" id="deadline" th:value="${declaration.deadline}"/>
 				      </div>
 			   	  </div>
 	            </fieldset>
@@ -36,11 +37,11 @@
 					  	<div class="layui-upload">
 						  	<button type="button" class="layui-btn layui-btn-normal" id="choose">选择文件</button>
 						  	<button type="button" class="layui-btn" id="upload">开始上传</button><span id="flag" style="color:green;margin-left:30px;" hidden>已上传</span>
-						  	<input type="hidden" name="declarationMaterialId" id="declarationMaterialId" value="0"/>
+						  	<input type="hidden" name="declarationMaterialId" id="declarationMaterialId" th:value="${project.midtermMaterialId}"/>
 					  	</div>
 				  	</div>
 			  	</div><br>
-			  	<div style="text-align:center;"><button class="layui-btn" onclick="save('+data.id+')">保存</button></div>
+			  	<div style="text-align:center;"><button class="layui-btn" onclick="save()">保存</button></div>
             </div>
 	   </div>
 	        
@@ -48,12 +49,28 @@
 </body>
 <script src="/layui/layui.js"></script>
 <script type="text/javascript" th:inline="none">
+//判断截止日期是否已过
+var deadline=new Date($("#deadline").val()+' 23:59:59');
+var now=new Date();
+if(now<deadline){
+	
+}else{
+	alert("对不起，中期检查已截止");
+	window.parent.location.href = "/#/mid/material";
+}
+
+//材料是否已上传
+var declarationMaterialId=$("#declarationMaterialId").val();
+if(declarationMaterialId!=null&&declarationMaterialId!=''&&declarationMaterialId!='0'){
+	$("#flag").show();
+}
+
 layui.use('upload', function(){
 	var upload = layui.upload;
 	//选完文件后不自动上传
 	  upload.render({
 	    elem: '#choose'
-	    ,url: '/upload/declaration'
+	    ,url: '/upload/midMaterial'
 	    ,auto: false
 	    ,accept: 'file'
 	    //,multiple: true
@@ -70,6 +87,26 @@ layui.use('upload', function(){
 	    }
 	  });
 });
+
+//
+function save(){
+	var declarationMaterialId=$("#declarationMaterialId").val();
+	var projectId=$("#projId").val();
+	$.ajax({
+		type: "post",
+	    dataType: "json",
+	    data:{projectId:projectId,declarationMaterialId:declarationMaterialId},
+	    url: "/mid/saveMaterial",
+	    success: function (data) {
+	    	if(data.code="200"){
+	    		alert("保存成功");
+	    	}
+	    },
+	    error:function(data){
+	    	alert("服务器出错");
+	    }
+	});
+}
 </script>
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="detial">查看详情</a>

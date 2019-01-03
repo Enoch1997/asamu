@@ -7,16 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.DeclarationRule;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
-import com.asamu.plmp.pojo.entity.RoleDO;
-import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.DeclarationService;
 import com.asamu.plmp.service.MenuService;
@@ -185,7 +181,7 @@ public class PageController {
 	
 	@RequestMapping("/mid/upload")
 	public String midUploadPage(Model model,Integer projectId) {
-		System.out.println(projectId);
+		//System.out.println(projectId);
 		List<DeclarationRule> list = declarationService.findByType(1);
 		ProjectinfoDO project = projectService.getProjectById(projectId);
 		if(list==null) {
