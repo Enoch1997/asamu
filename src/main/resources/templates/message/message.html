@@ -50,7 +50,7 @@ layui.use('table', function(){
 		  var content='<div class="layui-card-body" style="padding: 15px;">'+'标题:'+data.title+'<br/>'
 		  	+'时间:'+data.createTime+'<br/>'
 		  	+'内容:'+data.content+'</div>';
-		  if(object.event==='showDetail'){
+		  if(object.event=='showDetail'){
 			  //alert("id"+data.id+"状态"+data.isRead);
 			  data.remark='已读';
 			  layer.open({
