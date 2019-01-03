@@ -70,6 +70,23 @@ public class ProjectController {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProject(id,status);
 		return JsonResult.success(projectinfoDOs);
 	}
+	
+	@RequestMapping("/midProject")
+	@ResponseBody
+	public JsonResult getmidProject(Integer id) {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findmidProject(id);
+		return JsonResult.success(projectinfoDOs);
+	}
+	
+	@RequestMapping("/endProject")
+	@ResponseBody
+	public JsonResult getendProject(Integer id) {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findendProject(id);
+		return JsonResult.success(projectinfoDOs);
+	}
+	
+	
+	
 	@RequestMapping("/getProjectById")
 	@ResponseBody
 	public JsonResult getProject(Integer id) {
@@ -88,6 +105,24 @@ public class ProjectController {
 	@ResponseBody
 	public JsonResult getProjectByStatus(Integer status) {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(status);
+		return JsonResult.success(projectinfoDOs);
+	}
+	
+	@RequestMapping("/midProjectByStatus")
+	@ResponseBody
+	public JsonResult getmidProjectByStatus() {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(5);
+		List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(8);
+		projectinfoDOs.addAll(projectinfoDOs1);
+		return JsonResult.success(projectinfoDOs);
+	}
+	
+	@RequestMapping("/endProjectByStatus")
+	@ResponseBody
+	public JsonResult getendProjectByStatus() {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(7);
+		List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(10);
+		projectinfoDOs.addAll(projectinfoDOs1);
 		return JsonResult.success(projectinfoDOs);
 	}
 	

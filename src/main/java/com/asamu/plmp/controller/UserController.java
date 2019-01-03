@@ -49,7 +49,7 @@ public class UserController {
 		return JsonResult.success(list);
 	}
 	
-	@RequestMapping("/deleteUsers")
+	@RequestMapping("/deleteByuserId")
 	@ResponseBody
 	public JsonResult deleteUsers(Integer userid) {
 		userService.deleteUser(userid);
