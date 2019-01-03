@@ -24,6 +24,8 @@ import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.MaterialReviewService;
 import com.asamu.plmp.service.MaterialService;
+import com.asamu.plmp.service.MessageService;
+import com.asamu.plmp.service.ProjectService;
 
 @Controller
 public class MaterialController {
@@ -32,6 +34,10 @@ public class MaterialController {
 	private MaterialService materialService;
 	@Autowired
 	private MaterialReviewService materialReviewService;
+	@Autowired
+	private ProjectService projectService;
+	@Autowired
+	private MessageService messageService;
 	
 	
 	private final String DECLARATION_URL="d:\\asamu\\申报书\\";
@@ -141,6 +147,9 @@ public class MaterialController {
 	@ResponseBody
 	public JsonResult setMidReject(Integer projectId,Integer reviewResult,String rejectReason) {
 		materialReviewService.setMidReject(projectId,reviewResult,rejectReason);
+		projectService.updateProjectStatus(projectId,8);
+		messageService.sendMessageById(projectId, 8);
+
 		return JsonResult.success();
 	}
 	
@@ -148,6 +157,8 @@ public class MaterialController {
 	@ResponseBody
 	public JsonResult setEndReject(Integer projectId,Integer reviewResult,String rejectReason) {
 		materialReviewService.setEndReject(projectId,reviewResult,rejectReason);
+		projectService.updateProjectStatus(projectId,10);
+		messageService.sendMessageById(projectId, 10);
 		return JsonResult.success();
 	}
 	
