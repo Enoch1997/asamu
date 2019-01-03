@@ -55,7 +55,7 @@ public class UserDO extends BaseEntity{
 	private Integer status;
 	
 	@Column
-	private Integer remarks;
+	private String remarks;
 	
 	@Transient
 	private String rolename;
@@ -148,11 +148,11 @@ public class UserDO extends BaseEntity{
 		this.status = status;
 	}
 
-	public Integer getRemarks() {
+	public String getRemarks() {
 		return remarks;
 	}
 
-	public void setRemarks(Integer remarks) {
+	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
 

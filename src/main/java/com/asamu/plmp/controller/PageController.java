@@ -58,10 +58,7 @@ public class PageController {
 		return "message/message";
 	}
 	
-	@RequestMapping("user")
-	public String getUserPage() {
-		return "userlist/userlist";
-	}
+	
 	
 	@RequestMapping("/role")
 	public String getRolePage() {

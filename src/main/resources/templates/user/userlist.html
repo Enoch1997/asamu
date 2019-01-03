@@ -4,6 +4,7 @@
   <meta charset="utf-8">
 </head>
 <link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
 <body style="width: 100%; height: 100%;">
 	<div style="padding: 20px; background-color: #F2F2F2;">
 		<div class="layui-card">
@@ -52,32 +53,30 @@ layui.use('table', function(){
 	  
 	  table.on('tool(test)',function(object){
 		  var data=object.data;
-		  if(object.event==='showDetail'){
-			  alert(data.id);
+		  if(object.event==='edit'){
+			  window.parent.location.href="/#/user/detail?id="+data.id;
 		  }else if(object.event==='del'){
-			  var user;
 			  $.ajax({
 				    type: "post",
 				    dataType: "json",
-				    //url: "/user/getUsersByRole?roleId=3",
+				    url: "/user/delete?id="+data.id,
 				    success: function (data) {
-				    	expert=data.data;
-				    	show(expert,project);
+				        if (data.code == "200") {
+							alert("删除成功");
+							window.location.reload();
+				  		}
+				    },
+				    error: function (data) {
+				        alert("服务器出错！");
 				    }
-		  		});
+				});
 		  }
 	  });
 	  
 	});
 	
 	function addUser(){
-		layer.open({
-			  type: 1,
-			  skin: 'layui-layer-rim', //加上边框
-			  area: ['420px', '240px'], //宽高
-			  content: 'html内容',
-			  btn: ['保存','关闭']
-			});
+		window.parent.location.href="/#/user/add";
 	}
 </script>
 <script type="text/html" id="barDemo">

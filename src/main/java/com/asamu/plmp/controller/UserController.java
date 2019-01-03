@@ -3,9 +3,11 @@ package com.asamu.plmp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,6 +43,24 @@ public class UserController {
 		 return "login";
 	}
     
+    /**
+     * 更新基本信息
+     * @param session
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+	public JsonResult update(UserDO user) {
+    	//System.out.println(user);
+		return userService.updateUser(user);
+	}
+
+    @RequestMapping("/updatePsd")
+    @ResponseBody
+	public JsonResult updatePsd(Integer id,String oldPsd,String newPsd) {
+		return userService.updateUserPsd(id, oldPsd, newPsd);
+	}
+    
 	@RequestMapping("/getUsers")
 	@ResponseBody
 	public JsonResult getUsers() {
@@ -49,10 +69,10 @@ public class UserController {
 		return JsonResult.success(list);
 	}
 	
-	@RequestMapping("/deleteByuserId")
+	@RequestMapping("/delete")
 	@ResponseBody
-	public JsonResult deleteUsers(Integer userid) {
-		userService.deleteUser(userid);
+	public JsonResult deleteUsers(Integer id) {
+		userService.deleteUser(id);
 		return JsonResult.success();
 	}
 	
@@ -78,6 +98,46 @@ public class UserController {
 		return JsonResult.success(list);
 	}
 	
-	//public String getDetailPage(String)
+	/**
+	 * 跳转用户详情页面
+	 * @return
+	 */
+	@RequestMapping("/detail")
+	public String getDetailPage(Integer id,HttpSession session,Model model) {
+		UserDO user;
+		if(id==null) {
+			user = (UserDO)session.getAttribute("user");
+		}else {
+			user = userService.findUserById(id);
+		}
+		model.addAttribute("user", user);
+		return "/user/userDetail";
+	}
 	
+	/**
+	 * 跳转用户列表页面
+	 * @return
+	 */
+	@RequestMapping("/list")
+	public String getUserPage() {
+		return "user/userlist";
+	}
+	
+	/**
+	 * 跳转用户修改密码页面
+	 * @return
+	 */
+	@RequestMapping("updatePsdPage")
+	public String getUpdatePsdPage() {
+		return "user/psd";
+	}
+	
+	/**
+	 * 跳转添加用户页面
+	 * @return
+	 */
+	@RequestMapping("add")
+	public String getAddPage() {
+		return "user/add";
+	}
 }

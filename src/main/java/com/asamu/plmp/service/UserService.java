@@ -1,5 +1,6 @@
 package com.asamu.plmp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -54,6 +55,11 @@ public class UserService {
 
 	public void addUser(UserDO user) {
 		// TODO Auto-generated method stub
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
+		if(user.getRoleId()==null) {
+			user.setRoleId(3);
+		}
 		userDAO.save(user);
 	}
 
@@ -77,6 +83,27 @@ public class UserService {
 		// TODO Auto-generated method stub
 		List<UserDO> list = userDAO.findByRoleID(roleId);
 		return list;
+	}
+
+	public JsonResult updateUser(UserDO user) {
+		UserDO realUser = userDAO.findUserDoById(user.getId());
+		realUser.setUpdateTime(new Date());
+		realUser.setRealName(user.getRealName());
+		realUser.setEmail(user.getEmail());
+		realUser.setTel(user.getTel());
+		realUser.setUnit(user.getUnit());
+		userDAO.save(realUser);
+		return JsonResult.success();
+	}
+	
+	@Transactional
+	public JsonResult updateUserPsd(Integer id, String oldPsd, String newPsd) {
+		UserDO user = userDAO.findUserDoById(id);
+		if(!user.getPassword().equals(oldPsd)) {
+			return new JsonResult(201,"密码错误");
+		}
+		 userDAO.updatePassword(id,newPsd);
+		return JsonResult.success();
 	}
 	
 

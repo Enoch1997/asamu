@@ -94,7 +94,7 @@ function allot(projId){
 	    success: function (data) {
 	    	if(data.code=="200"){
 	    		alert("分配成功");
-	    		window.parent.location.href = "/#/declare/expertAllot";
+	    		window.location.reload();
 	    	}
 	    },
 	    error:function(data){
