@@ -100,11 +100,15 @@ public class ProjectController {
 		for(int i = 0; i < size ; i++)
 		{	
 			ProjectInfoExtend templist = new ProjectInfoExtend();
+			templist.setId(projectinfoDOs.get(i).getId());
 			templist.setName(projectinfoDOs.get(i).getName());
 			templist.setLevelName(projectinfoDOs.get(i).getLevelName());
 			templist.setField(projectinfoDOs.get(i).getField());
 			templist.setDirectorUserName(projectinfoDOs.get(i).getDirectorUserName());
 			templist.setStatusName(projectinfoDOs.get(i).getStatusName());
+			templist.setEndMaterialId(projectinfoDOs.get(i).getEndMaterialId());
+			templist.setMidtermMaterialId(projectinfoDOs.get(i).getMidtermMaterialId());
+			templist.setDeclarationMaterialId(projectinfoDOs.get(i).getDeclarationMaterialId());
 			ExpertReview expertReview = allocationService.findExpertReview(projectinfoDOs.get(i).getId());
 			templist.setScore(expertReview.getScore());
 			templist.setComment(expertReview.getComment());
@@ -131,4 +135,17 @@ public class ProjectController {
 		return JsonResult.success(projectinfoDOs);
 	}
 	
+	@RequestMapping("/updateMidMaterialId")
+	@ResponseBody
+	public JsonResult updateMidMaterialId(Integer id,Integer midMaterialId) {
+		projectService.updateMidMaterialId(id,midMaterialId);
+		return JsonResult.success();
+	}
+	
+	@RequestMapping("/updateEndMaterialId")
+	@ResponseBody
+	public JsonResult updateEndMaterialId(Integer id,Integer endMaterialId) {
+		projectService.updateEndMaterialId(id,endMaterialId);
+		return JsonResult.success();
+	}
 }
