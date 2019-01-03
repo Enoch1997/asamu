@@ -36,7 +36,12 @@ public class ProjectService {
 	@Transactional
 	public List<ProjectinfoDO> findProject(Integer directorUserId, Integer status) {
 		// TODO Auto-generated method stub
-		return projectDAO.findByIdAndStatus(directorUserId,status);
+		List<ProjectinfoDO> list = projectDAO.findByIdAndStatus(directorUserId,status);
+		Integer size = list.size();
+		
+		List<ProjectinfoDO> list1 = projectUtil.reLevelName(size, list);
+		List<ProjectinfoDO> list2 =	projectUtil.reStatusName(size, list1);
+		return list2;
 	}
 	
 	@Transactional

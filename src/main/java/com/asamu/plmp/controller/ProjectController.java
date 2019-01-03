@@ -17,6 +17,7 @@ import com.asamu.plmp.pojo.entity.ProjectInfoExtend;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.AllocationService;
+import com.asamu.plmp.service.MessageService;
 import com.asamu.plmp.service.ProjectService;
 
 @Controller
@@ -29,6 +30,8 @@ public class ProjectController {
 	@Resource
 	AllocationService allocationService;
 	
+	@Resource
+	MessageService messageService;
 	
 	//申报项目
 	@RequestMapping("/setProject")
@@ -114,11 +117,10 @@ public class ProjectController {
 	@ResponseBody
 	public JsonResult updateProjectStatus(Integer id,Integer status) {
 		projectService.updateProjectStatus(id,status);
-		if(status == 2)
-		{
-			ProjectinfoDO projectinfoDO = projectService.getProjectById(id);
-			projectinfoDO.getDirectorUserId();
+		if(status==2||status==5||status==6||status==7||status==8||status==9||status==10) {
+			messageService.sendMessageById(id, status);
 		}
+		
 		return JsonResult.success();
 	}
 	

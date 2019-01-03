@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.asamu.plmp.dao.MessageDAO;
 import com.asamu.plmp.pojo.entity.Message;
+import com.asamu.plmp.pojo.entity.ProjectinfoDO;
+import com.asamu.plmp.util.MessageUtil;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 
 
@@ -16,6 +19,10 @@ import com.asamu.plmp.pojo.entity.Message;
 public class MessageService {
 	@Autowired
 	private MessageDAO messageDAO;
+	
+	@Autowired
+	private ProjectService projectService;
+	
 
 	public List<Message> findMessageByUserId(Integer userId)
 	{
@@ -34,11 +41,20 @@ public class MessageService {
 		messageDAO.updateIsRead(id,isRead);
 	}
 	
-	/*@Transactional
-	public void sendMessageById(Integer id)
+	@Transactional
+	public void sendMessageById(Integer id,Integer status)
 	{
-		messageDAO.save()
-	}*/
+		
+		ProjectinfoDO projectinfoDO = projectService.getProjectById(id);	
+		Integer receiverid = projectinfoDO.getDirectorUserId();
+		String projectName = projectinfoDO.getName();
+
+		MessageUtil messageUtil = new MessageUtil();
+		
+		Message message = messageUtil.sendmesssage(receiverid, status, projectName);
+		
+		messageDAO.save(message);
+	}
 	
 	
 }
