@@ -54,8 +54,20 @@ layui.use('table', function(){
 		  var data=object.data;
 		  if(object.event==='showDetail'){
 			  alert(data.id);
+		  }else if(object.event==='del'){
+			  var user;
+			  $.ajax({
+				    type: "post",
+				    dataType: "json",
+				    //url: "/user/getUsersByRole?roleId=3",
+				    success: function (data) {
+				    	expert=data.data;
+				    	show(expert,project);
+				    }
+		  		});
 		  }
 	  });
+	  
 	});
 	
 	function addUser(){
