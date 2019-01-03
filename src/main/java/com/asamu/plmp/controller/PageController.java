@@ -167,7 +167,7 @@ public class PageController {
 	}
 	
 	@RequestMapping("/declare/expertReview")
-	public String getexpertReviewPage() {
+	public String getExpertReviewPage() {
 		return "declare/review";
 	}
 	
@@ -196,5 +196,19 @@ public class PageController {
 		model.addAttribute("project", project);
 		
 		return "mid/uploadMaterial";
+	}
+	@RequestMapping("/declare/projectSet")
+	public String getProjectSetPage() {
+		return "declare/approval";
+	}
+	
+	@RequestMapping("/mid/review")
+	public String getMidProjectPage() {
+		return "mid/midreview";
+	}
+	
+	@RequestMapping("/end/review")
+	public String getEndProjectPage() {
+		return "end/endreview";
 	}
 }

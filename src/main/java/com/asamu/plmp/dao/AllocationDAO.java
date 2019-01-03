@@ -12,4 +12,7 @@ public interface AllocationDAO extends JpaRepository<ExpertReview, Integer>{
 	
 	@Query("select u from ExpertReview u where u.expertId = ?1")
 	List<ExpertReview> findByExpertId(Integer expertId);
+	
+	@Query("select u from ExpertReview u where u.projectId = ?1")
+	ExpertReview findByProjectId(Integer projectId);
 }

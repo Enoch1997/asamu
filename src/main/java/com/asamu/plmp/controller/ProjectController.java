@@ -2,6 +2,7 @@ package com.asamu.plmp.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.asamu.plmp.pojo.entity.ExpertReview;
+import com.asamu.plmp.pojo.entity.ProjectInfoExtend;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
+import com.asamu.plmp.service.AllocationService;
 import com.asamu.plmp.service.ProjectService;
 
 @Controller
@@ -21,6 +25,9 @@ public class ProjectController {
 
 	@Resource
 	ProjectService projectService;
+	
+	@Resource
+	AllocationService allocationService;
 	
 	
 	//申报项目
@@ -80,11 +87,38 @@ public class ProjectController {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(status);
 		return JsonResult.success(projectinfoDOs);
 	}
+	
+	@RequestMapping("/getProjectsExtendByStatus")
+	@ResponseBody
+	public JsonResult getProjectExtendByStatus(Integer status) {
+		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(status);
+		Integer size = projectinfoDOs.size();
+		List<ProjectInfoExtend> projectInfoExtends = new ArrayList<>(size);
+		for(int i = 0; i < size ; i++)
+		{	
+			ProjectInfoExtend templist = new ProjectInfoExtend();
+			templist.setName(projectinfoDOs.get(i).getName());
+			templist.setLevelName(projectinfoDOs.get(i).getLevelName());
+			templist.setField(projectinfoDOs.get(i).getField());
+			templist.setDirectorUserName(projectinfoDOs.get(i).getDirectorUserName());
+			templist.setStatusName(projectinfoDOs.get(i).getStatusName());
+			ExpertReview expertReview = allocationService.findExpertReview(projectinfoDOs.get(i).getId());
+			templist.setScore(expertReview.getScore());
+			templist.setComment(expertReview.getComment());
+			projectInfoExtends.add(templist);
+		}
+		return JsonResult.success(projectInfoExtends);
+	}
 
 	@RequestMapping("/UpdateProjectStatus")
 	@ResponseBody
 	public JsonResult updateProjectStatus(Integer id,Integer status) {
 		projectService.updateProjectStatus(id,status);
+		if(status == 2)
+		{
+			ProjectinfoDO projectinfoDO = projectService.getProjectById(id);
+			projectinfoDO.getDirectorUserId();
+		}
 		return JsonResult.success();
 	}
 	

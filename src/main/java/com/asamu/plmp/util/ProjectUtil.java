@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.asamu.plmp.dao.UserDAO;
+import com.asamu.plmp.pojo.entity.ProjectInfoExtend;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.entity.UserDO;
 
@@ -12,6 +13,26 @@ public class ProjectUtil {
 
 	
 	public List<ProjectinfoDO> reLevelName(Integer size,List<ProjectinfoDO> list)
+	{
+		
+		for (int i = 0; i < size; i++) {
+
+			if(list.get(i).getApplyLevel().equals("1"))
+			{
+				list.get(i).setLevelName("校级一类");
+			}
+			else if(list.get(i).getApplyLevel().equals("2"))
+			{
+				list.get(i).setLevelName("校级二类");
+			}
+			else {
+				list.get(i).setLevelName("");
+			}
+		}
+		return list;
+	}
+	
+	public List<ProjectInfoExtend> reLevelNameExtend(Integer size,List<ProjectInfoExtend> list)
 	{
 		
 		for (int i = 0; i < size; i++) {
