@@ -154,7 +154,7 @@ public class ProjectService {
 		List<ProjectinfoDO> list1 = projectDAO.findByIdAndStatus(directorUserId,8);
 		list.addAll(list1);
 		Integer size = list.size();
-		
+		System.out.println(list1);
 		List<ProjectinfoDO> list2 = projectUtil.reLevelName(size, list);
 		List<ProjectinfoDO> list3 =	projectUtil.reStatusName(size, list2);
 		return list3;

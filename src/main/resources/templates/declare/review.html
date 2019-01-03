@@ -79,7 +79,7 @@ layui.use('table', function(){
 				  	+'<div class="layui-form-item">'
 				  	+'<label class="layui-form-label">评分</label>'
 				  	+'<div class="layui-input-inline">'
-				  	+'<input id="pf" type="text" autocomplete="off" class="layui-input">'+'</div></div>'
+				  	+'<input id="pf" type="text" autocomplete="off" class="layui-input" oninput = "value=value.replace(/[^\\d]/g,\'\')">'+'</div></div>'
 				  	+'<div class="layui-form-item">'
 				  	+'<label class="layui-form-label">评语</label>'
 				  	+'<div class="layui-input-inline">'
@@ -99,6 +99,21 @@ layui.use('table', function(){
 function save(projId){
 	var pf=$("#pf").val();
 	var py=$("#py").val();
+	$.ajax({
+		type: "post",
+	    dataType: "json",
+	    data:{projectId:projId,score:pf,comment:py},
+	    url: "/declare/saveCommentAndScore",
+	    success: function (data) {
+	    	if(data.code="200"){
+	    		alert("评审成功");
+	    		window.location.reload();
+	    	}
+	    },
+	    error:function(data){
+	    	alert("服务器出错");
+	    }
+	});
 	
 }
 </script>
