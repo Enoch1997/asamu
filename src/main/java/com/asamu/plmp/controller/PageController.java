@@ -170,4 +170,31 @@ public class PageController {
 	public String getexpertReviewPage() {
 		return "declare/review";
 	}
+	
+	@RequestMapping("/mid/material")
+	public String midPage(Model model) {
+		List<DeclarationRule> list = declarationService.findByType(1);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		
+		return "mid/midProject";
+	}
+	
+	@RequestMapping("/mid/upload")
+	public String midUploadPage(Model model,Integer projectId) {
+		System.out.println(projectId);
+		List<DeclarationRule> list = declarationService.findByType(1);
+		ProjectinfoDO project = projectService.getProjectById(projectId);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		model.addAttribute("project", project);
+		
+		return "mid/uploadMaterial";
+	}
 }

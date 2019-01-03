@@ -9,7 +9,7 @@
 		<div class="layui-card">
 	        <div class="layui-card-header">专家评审</div>
 	        <div class="layui-card-body">
-
+				<input type="hidden" id="expertId" th:value="${session.user.id}">
 	          	<table class="layui-hide" id="test" lay-filter="test"></table>
 	        </div>
 	      </div>
@@ -19,10 +19,11 @@
 <script type="text/javascript" th:inline="none">
 layui.use('table', function(){
 	  var table = layui.table;
-	  
+	  var expertId=$("#expertId").val();
+	  //alert(expertId);
 	  table.render({
 		    elem: '#test'
-		    ,url:'/declare/getProjectsByExpertIdAndStatus?expertId=1&status=3'
+		    ,url:'/declare/getProjectsByExpertIdAndStatus?status=3&expertId='+expertId
 		    ,cols: [[
 		      {type:'checkbox'}
 		      ,{field:'id',hide:true}
@@ -33,8 +34,7 @@ layui.use('table', function(){
 		      ,{field:'directorUserName', title: '项目负责人',align:'center',width:100}
 		      ,{field:'directorTel', title: '负责人电话',align:'center',width:195}
 		      ,{field:'statusName', title: '项目状态',align:'center',width:100}
-		      ,{field:'remarks', title: '操作',align:'center',width:200,toolbar: '#barDemo'}
-		      ,{field:'remarks', title: '评审',align:'center',width:200,toolbar: '#barDemo1'}	      
+		      ,{field:'remarks', title: '操作',align:'center',width:200,toolbar: '#barDemo'}      
 		    ]]
 		    ,page: true
 		    ,response: {
@@ -50,33 +50,7 @@ layui.use('table', function(){
 		      }
 		  });
 	  
-	  table.on('tool(test)',function(object){
-		  var data=object.data;
-		  if(object.event==='showDetail'){
-			  alert(data.id);
-		  }
-	  });
-	});
-	
-	function addUser(){
-		layer.open({
-			  type: 1,
-			  skin: 'layui-layer-rim', //加上边框
-			  area: ['420px', '240px'], //宽高
-			  content: 'html内容',
-			  btn: ['保存','关闭']
-			});
-	}
-</script>
- <script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
-<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="download">下载申报书</a>
-</script>
-<script>
-layui.use('table', function(){
-	  var table = layui.table;
-	  //监听工具条
+	//监听工具条
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
 	    if(obj.event === 'download'){
@@ -96,14 +70,45 @@ layui.use('table', function(){
 	      window.location.href="/download?id="+data.declarationMaterialId;
 	    } else if(obj.event === 'detail'){
 	      alert("查看");
-	    } 
+	    } else if(obj.event=='review'){
+	    	var content='';
+			  content+='<br><div class="layui-form-item">'
+				  	+'<label class="layui-form-label">项目名称</label>'
+				  	+'<div class="layui-input-inline">'
+				  	+'<input type="text" autocomplete="off" class="layui-input" readonly="readonly" value="'+data.name+'">'+'</div></div>'
+				  	+'<div class="layui-form-item">'
+				  	+'<label class="layui-form-label">评分</label>'
+				  	+'<div class="layui-input-inline">'
+				  	+'<input id="pf" type="text" autocomplete="off" class="layui-input">'+'</div></div>'
+				  	+'<div class="layui-form-item">'
+				  	+'<label class="layui-form-label">评语</label>'
+				  	+'<div class="layui-input-inline">'
+				  	+'<textarea id="py" placeholder="请输入评语" class="layui-textarea"></textarea>'+'</div></div>';
+		  	content+='<div style="text-align:center;"><button class="layui-btn" onclick="save('+data.id+')">保存</button></div>';
+			
+			  layer.open({
+				  type: 1,
+				  title:'评审',
+				  area: ['460px', '360px'], //宽高
+				  content: content
+				});
+	    }
 	  });
-	  
+
 	});
+function save(projId){
+	var pf=$("#pf").val();
+	var py=$("#py").val();
+	
+}
+</script>
+ <script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="download">下载申报书</a>
+ <a class="layui-btn layui-btn-xs" lay-event="review">评审</a>
 </script>
 
-<script type="text/html" id="barDemo1">
-  <a class="layui-btn layui-btn-xs" lay-event="pass">评审</a>
-</script>
+
 
 </html>

@@ -48,6 +48,12 @@ public class ProjectController {
 		return JsonResult.success();
 	}
 	
+	/**
+	 * 根据负责人id和状态获得项目
+	 * @param id
+	 * @param status
+	 * @return
+	 */
 	@RequestMapping("/getProject")
 	@ResponseBody
 	public JsonResult getProject(Integer id,Integer status) {
