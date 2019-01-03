@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asamu.plmp.pojo.entity.Material;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.MaterialService;
-import com.asamu.plmp.util.FileUtil;
 
 @Controller
 public class MaterialController {
@@ -32,6 +31,7 @@ public class MaterialController {
 	
 	private final String DECLARATION_URL="d:\\asamu\\申报书\\";
 	private final String MID_MATERIAL_URL="d:\\asamu\\中期材料\\";
+	private final String END_MATERIAL_URL="d:\\asamu\\结题材料\\";
 	
 	/**
      * @function 上传申报书
@@ -61,6 +61,22 @@ public class MaterialController {
 	        return new JsonResult(201,"上传失败！上传文件为空");
 	    }else{
 	        return materialService.saveMaterial(file,MID_MATERIAL_URL);
+	    }
+	
+	}
+	
+	/**
+     * @function 上传结题验收材料
+     * @param file
+     * @return
+     */
+	@RequestMapping("/upload/endMaterial")
+	@ResponseBody
+	public JsonResult uploadEndMaterial(@RequestParam(value = "file", required = false) MultipartFile file){
+	    if(file == null){
+	        return new JsonResult(201,"上传失败！上传文件为空");
+	    }else{
+	        return materialService.saveMaterial(file,END_MATERIAL_URL);
 	    }
 	
 	}

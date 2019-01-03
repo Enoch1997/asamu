@@ -74,7 +74,7 @@ public class ProjectUtil {
 				list.get(i).setStatusName("立项评审完成");
 			    break;
 			case 5:
-				list.get(i).setStatusName("立项");
+				list.get(i).setStatusName("已立项");
 			    break;
 			case 6:
 			    list.get(i).setStatusName("不立项");
@@ -83,13 +83,13 @@ public class ProjectUtil {
 				list.get(i).setStatusName("中期检查通过");
 			    break;
 			case 8:
-				list.get(i).setStatusName("中期检查待整");
+				list.get(i).setStatusName("中期检查待整改");
 			    break;
 			case 9:
 				list.get(i).setStatusName("已结题");
 			    break;
 			case 10:
-				list.get(i).setStatusName("结题验收整改");
+				list.get(i).setStatusName("结题验收待整改");
 			    break;
 			default:
 				list.get(i).setStatusName("");

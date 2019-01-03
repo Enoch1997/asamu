@@ -37,7 +37,7 @@
 					  	<div class="layui-upload">
 						  	<button type="button" class="layui-btn layui-btn-normal" id="choose">选择文件</button>
 						  	<button type="button" class="layui-btn" id="upload">开始上传</button><span id="flag" style="color:green;margin-left:30px;" hidden>已上传</span>
-						  	<input type="hidden" name="declarationMaterialId" id="declarationMaterialId" th:value="${project.midtermMaterialId}"/>
+						  	<input type="hidden" name="declarationMaterialId" id="declarationMaterialId" th:value="${project.endMaterialId}"/>
 					  	</div>
 				  	</div>
 			  	</div><br>
@@ -55,8 +55,8 @@ var now=new Date();
 if(now<deadline){
 	
 }else{
-	alert("对不起，中期检查已截止");
-	window.parent.location.href = "/#/mid/material";
+	alert("对不起，结题验收已截止");
+	window.parent.location.href = "/#/end/material";
 }
 
 //材料是否已上传
@@ -70,7 +70,7 @@ layui.use('upload', function(){
 	//选完文件后不自动上传
 	  upload.render({
 	    elem: '#choose'
-	    ,url: '/upload/midMaterial'
+	    ,url: '/upload/endMaterial'
 	    ,auto: false
 	    ,accept: 'file'
 	    //,multiple: true
@@ -99,8 +99,8 @@ function save(){
 	$.ajax({
 		type: "post",
 	    dataType: "json",
-	    data:{id:projectId,declarationMaterialId:midMaterialId},
-	    url: "/project/updateMidMaterialId",
+	    data:{id:projectId,endMaterialId:declarationMaterialId},
+	    url: "/project/updateEndMaterialId",
 	    success: function (data) {
 	    	if(data.code="200"){
 	    		alert("保存成功");

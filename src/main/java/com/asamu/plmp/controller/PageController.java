@@ -179,6 +179,18 @@ public class PageController {
 		return "mid/midProject";
 	}
 	
+	@RequestMapping("/end/material")
+	public String endPage(Model model) {
+		List<DeclarationRule> list = declarationService.findByType(2);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		
+		return "end/endProject";
+	}
+	
 	@RequestMapping("/mid/upload")
 	public String midUploadPage(Model model,Integer projectId) {
 		//System.out.println(projectId);
@@ -193,6 +205,22 @@ public class PageController {
 		
 		return "mid/uploadMaterial";
 	}
+	
+	@RequestMapping("/end/upload")
+	public String endUploadPage(Model model,Integer projectId) {
+		//System.out.println(projectId);
+		List<DeclarationRule> list = declarationService.findByType(2);
+		ProjectinfoDO project = projectService.getProjectById(projectId);
+		if(list==null) {
+			//System.out.println("list为null");
+		}else {
+			model.addAttribute("declaration", list.get(0));
+		}
+		model.addAttribute("project", project);
+		
+		return "end/uploadMaterial";
+	}
+	
 	@RequestMapping("/declare/projectSet")
 	public String getProjectSetPage() {
 		return "declare/approval";
