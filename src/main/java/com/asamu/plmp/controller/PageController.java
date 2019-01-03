@@ -3,6 +3,7 @@ package com.asamu.plmp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asamu.plmp.pojo.entity.DeclarationRule;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
+import com.asamu.plmp.pojo.entity.UserDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
 import com.asamu.plmp.service.DeclarationService;
 import com.asamu.plmp.service.MenuService;
@@ -125,7 +127,11 @@ public class PageController {
 	}
 	
 	@RequestMapping("/declare/project")
-	public String projectDeclarePage(@RequestParam(defaultValue = "1")Integer userId,Model model) {
+	public String projectDeclarePage(Integer userId,Model model,HttpSession session) {
+		if(userId==null) {
+			UserDO user = (UserDO)session.getAttribute("user");
+			userId=user.getId();
+		}
 		List<ProjectinfoDO> list = projectService.findProject(userId, 0);
 		if(list.size()>0) {
 			model.addAttribute("project", list.get(list.size()-1));
