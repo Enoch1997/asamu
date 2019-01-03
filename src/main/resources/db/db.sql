@@ -97,7 +97,7 @@ create table t_projectinfo(
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment='项目信息表';
 ##ps::项目状态:0保存1已提交2初审通过3立项评审中4立项评审完成
-##			  5立项6不立项7中期检查通过8中期检查待整9已结题10结题验收整改
+##			  5已立项6不立项7中期检查通过8中期检查待整9已结题10结题验收整改
 
 
 
