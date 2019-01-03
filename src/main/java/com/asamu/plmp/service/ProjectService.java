@@ -133,5 +133,20 @@ public class ProjectService {
 		return list1;
 	}
 
+	public void updateMidMaterialId(Integer id, Integer midMaterialId) {
+		// TODO Auto-generated method stub
+		ProjectinfoDO projectinfoDO = projectDAO.findById(id).get();
+		projectinfoDO.setMidtermMaterialId(midMaterialId);
+		projectDAO.save(projectinfoDO);
+	}
+
+	public void updateEndMaterialId(Integer id, Integer endMaterialId) {
+		// TODO Auto-generated method stub
+		ProjectinfoDO projectinfoDO = projectDAO.findById(id).get();
+		projectinfoDO.setEndMaterialId(endMaterialId);
+		projectDAO.save(projectinfoDO);
+	}
+
+
 
 }
