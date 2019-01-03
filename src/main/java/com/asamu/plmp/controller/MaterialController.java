@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asamu.plmp.pojo.entity.Material;
+import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 import com.asamu.plmp.pojo.vo.JsonResult;
+import com.asamu.plmp.service.MaterialReviewService;
 import com.asamu.plmp.service.MaterialService;
 
 @Controller
@@ -27,6 +30,8 @@ public class MaterialController {
 	
 	@Autowired
 	private MaterialService materialService;
+	@Autowired
+	private MaterialReviewService materialReviewService;
 	
 	
 	private final String DECLARATION_URL="d:\\asamu\\申报书\\";
@@ -132,6 +137,18 @@ public class MaterialController {
         return JsonResult.success();
 	}
 	
+	@RequestMapping("/mid/reject")
+	@ResponseBody
+	public JsonResult setMidReject(Integer projectId,Integer reviewResult,String rejectReason) {
+		materialReviewService.setMidReject(projectId,reviewResult,rejectReason);
+		return JsonResult.success();
+	}
 	
+	@RequestMapping("/end/reject")
+	@ResponseBody
+	public JsonResult setEndReject(Integer projectId,Integer reviewResult,String rejectReason) {
+		materialReviewService.setEndReject(projectId,reviewResult,rejectReason);
+		return JsonResult.success();
+	}
 	
 }

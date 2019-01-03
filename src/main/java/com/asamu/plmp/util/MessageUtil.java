@@ -6,7 +6,7 @@ import com.asamu.plmp.pojo.entity.Message;
 
 public class MessageUtil {
 
-	public Message sendmesssage(Integer receiverUserId,Integer status,String projectName) {
+	public Message sendmesssage(Integer receiverUserId,Integer status,String projectName,String rejectReason) {
 		
 		Message message = new Message();
 		message.setReceiverUserId(receiverUserId);
@@ -34,7 +34,7 @@ public class MessageUtil {
 		else if(status == 8)
 		{
 			message.setTitle("中期检查消息！");
-			message.setContent("很抱歉，您的项目"+projectName +"没有通过中期检查！");
+			message.setContent("很抱歉，您的项目"+projectName +"没有通过中期检查！原因是"+rejectReason+"。");
 		}
 		
 		else if(status == 9)
@@ -45,7 +45,7 @@ public class MessageUtil {
 		else if(status == 10)
 		{
 			message.setTitle("结题验收消息！");
-			message.setContent("很抱歉，您的项目"+projectName +"没有通过结题验收！");
+			message.setContent("很抱歉，您的项目"+projectName +"没有通过结题验收！原因是"+rejectReason+"。");
 		}
 		
 		
