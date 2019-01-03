@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+</head>
+<link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/jquery-3.3.1.min.js" type="text/javascript"></script>
+<body>
+	<div style="padding: 20px; background-color: #F2F2F2;">
+		<div class="layui-card">
+	        <div class="layui-card-header">添加用户</div>
+	        <div class="layui-card-body">
+	        	<div class="layui-form-item">
+				    <div class="layui-inline">
+				      <label class="layui-form-label">用户名</label>
+				      <div class="layui-input-inline">
+				        <input type="text" id="username"  autocomplete="off" class="layui-input">
+				      </div>
+				    </div>
+				    <div class="layui-inline">
+				      <label class="layui-form-label">密码</label>
+				      <div class="layui-input-inline">
+				        <input type="text" id="password"  autocomplete="off" class="layui-input">
+				      </div>
+				    </div>
+			    </div>
+			    
+			    <div class="layui-form-item">
+				    <div class="layui-inline">
+				      <label class="layui-form-label">真实姓名</label>
+				      <div class="layui-input-inline">
+				        <input type="text" id="realName"  autocomplete="off" class="layui-input" >
+				      </div>
+				    </div>
+				    <div class="layui-inline">
+					    <label class="layui-form-label">所属部门</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="unit" autocomplete="off" class="layui-input">
+					    </div>
+					</div>
+				 </div>
+				 
+				 <div class="layui-form-item">
+				    <div class="layui-inline">
+				      <label class="layui-form-label">联系电话</label>
+				      <div class="layui-input-inline">
+				        <input type="tel" id="tel" autocomplete="off" class="layui-input">
+				      </div>
+				    </div>
+				    <div class="layui-inline">
+				      <label class="layui-form-label">邮箱</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="email" autocomplete="off" class="layui-input">
+					    </div>
+				    </div>
+			    </div>
+			   <div class="layui-form-item" style="margin-left:11px;" >
+			    <div class="layui-input-block">
+			      <button  class="layui-btn layui-btn-primary" onclick="save()">保存</button>
+			    </div>
+			  </div>
+	        </div>
+	    </div>
+	</div>
+<script src="/layui/layui.js"></script>
+<script>
+function save(){
+	var realName=$("#realName").val();
+	var tel=$("#tel").val();
+	var email=$("#email").val();
+	var unit=$("#unit").val();
+	var password=$("#password").val();
+	var username=$("#username").val();
+	
+	$.ajax({
+	    type: "post",
+	    dataType: "json",
+	    data:{username:username,password:password,realName:realName,tel:tel,email:email,unit:unit},
+	    url: "/user/addUser",
+	    success: function (data) {
+	        if (data.code == "200") {
+				alert("保存成功");
+	  		}
+	    },
+	    error: function (data) {
+	        alert("服务器出错！");
+	    }
+	});
+}
+</script>
+</body>
+</html>

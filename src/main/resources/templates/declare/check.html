@@ -68,7 +68,7 @@ layui.use('table', function(){
 		    	}); */
 		      window.location.href="/download?id="+data.declarationMaterialId;
 		    } else if(obj.event == 'detail'){
-		      alert("查看");
+		    	window.parent.location.href="/#/project/detail?id="+data.id;
 		    } else if(obj.event == 'pass'){//通过
 		    	$.ajax({
 		    	    type: "post",

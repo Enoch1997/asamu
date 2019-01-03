@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,6 +33,13 @@ public class ProjectController {
 	
 	@Resource
 	MessageService messageService;
+	
+	@RequestMapping("/detail")
+	public String goProjectDetail(Integer id,Model model) {
+		ProjectinfoDO project = projectService.getProjectById(id);
+		model.addAttribute("project", project);
+		return "project/detail";
+	}
 	
 	//申报项目
 	@RequestMapping("/setProject")
@@ -137,6 +145,7 @@ public class ProjectController {
 			ProjectInfoExtend templist = new ProjectInfoExtend();
 			templist.setId(projectinfoDOs.get(i).getId());
 			templist.setName(projectinfoDOs.get(i).getName());
+			templist.setApplyLevel(projectinfoDOs.get(i).getApplyLevel());
 			templist.setLevelName(projectinfoDOs.get(i).getLevelName());
 			templist.setField(projectinfoDOs.get(i).getField());
 			templist.setDirectorUserName(projectinfoDOs.get(i).getDirectorUserName());

@@ -67,7 +67,11 @@ public class ProjectinfoDO extends BaseEntity {
 	
 	@Transient
 	public String getLevelName() {
-		return levelName;
+		if(applyLevel.equals("1")) {
+			return "校级一类";
+		}else {
+			return "校级二类";
+		}
 	}
 
 	public void setLevelName(String levelName) {
@@ -217,6 +221,13 @@ public class ProjectinfoDO extends BaseEntity {
 
 	public String getIsUploadEnd() {
 		if(endMaterialId==null) {
+			return "未上传";
+		}
+		return "已上传";
+	}
+	
+	public String getIsUploadMid() {
+		if(midtermMaterialId==null) {
 			return "未上传";
 		}
 		return "已上传";

@@ -1,6 +1,7 @@
 package com.asamu.plmp.service;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -32,12 +33,13 @@ public class MessageService {
 	public List<Message> findMessageByUserId(Integer userId)
 	{
 
-		List<Message> list1 = messageDAO.findByReceiverUserId(userId);
-		int size = list1.size();
+		List<Message> list = messageDAO.findByReceiverUserId(userId);
+		int size = list.size();
 		for (int i = 0; i < size; i++) {
-		list1.get(i).setRemark();
+		list.get(i).setRemark();
 		}
-	   return list1;
+		Collections.reverse(list);
+	   return list;
 	}
 	
 	@Transactional
@@ -60,7 +62,7 @@ public class MessageService {
 		{
 			rejectReason = materialReview.getRejectReason();
 		}else {
-			rejectReason = "俞晨欢大帅比！！！";
+			rejectReason = "俞晨欢sb！！！";
 		}
 		
 		MessageUtil messageUtil = new MessageUtil();

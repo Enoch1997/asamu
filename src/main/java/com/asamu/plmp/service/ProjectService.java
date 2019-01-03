@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.asamu.plmp.dao.AllocationDAO;
 import com.asamu.plmp.dao.ProjectDAO;
+import com.asamu.plmp.dao.RoleDAO;
 import com.asamu.plmp.dao.UserDAO;
 import com.asamu.plmp.pojo.entity.ExpertReview;
 import com.asamu.plmp.pojo.entity.ProjectinfoDO;
@@ -68,18 +69,19 @@ public class ProjectService {
 	}
 	
 	public ProjectinfoDO getProjectById(Integer id) {
-		return  projectDAO.findById(id).get();
+		ProjectinfoDO project = projectDAO.findById(id).get();
+		UserDO user = userDAO.findById(project.getDirectorUserId()).get();
+		project.setDirectorUserName(user.getRealName());
+		return project;
 	}
 
 	@Transactional
 	public void updateProjectStatus(Integer id, Integer status) {
-		// TODO Auto-generated method stub
 		projectDAO.update(id,status);
 	}
 	
 	@Transactional
 	public List<ProjectinfoDO> findProjectByUserId(Integer id) {
-		// TODO Auto-generated method stub
 		List<ProjectinfoDO> list = projectDAO.findByUserId(id);
 		UserDO userDO = userDAO.findUserDoById(id);
 		Integer size = list.size();

@@ -57,8 +57,6 @@ layui.use('table', function(){
 		      layer.msg('正在下载');
 		      //alert(data.declarationMaterialId);
 		      window.location.href="/download?id="+data.declarationMaterialId;
-		    } else if(obj.event == 'detail'){
-		      alert("查看");
 		    } else if(obj.event == 'pass'){//立项
 		    	$.ajax({
 		    	    type: "post",
@@ -91,7 +89,9 @@ layui.use('table', function(){
 		    	        alert("服务器出错！");
 		    	    }
 		    	});
-		    } 
+		    } else if(obj.event=='detail'){
+		    	window.parent.location.href="/#/project/detail?id="+data.id;
+		    }
 	  });
 	});
 	
