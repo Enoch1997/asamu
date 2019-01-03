@@ -47,4 +47,11 @@ public class DeclareProjectController {
 		List<ProjectinfoDO> declareproDos = projectService.findProjectByExpertIdAndStatus(expertId,status);
 		return JsonResult.success(declareproDos);
 	}
+	
+	@RequestMapping("/saveCommentAndScore")
+	@ResponseBody
+	public JsonResult saveCommentAndScore(Integer projectId,Integer score,String comment) {
+		allocationService.saveCommentAndScore(projectId,score,comment);
+		return JsonResult.success();
+	}
 }

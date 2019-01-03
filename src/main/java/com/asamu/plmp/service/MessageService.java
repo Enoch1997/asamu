@@ -33,4 +33,12 @@ public class MessageService {
 	{
 		messageDAO.updateIsRead(id,isRead);
 	}
+	
+	/*@Transactional
+	public void sendMessageById(Integer id)
+	{
+		messageDAO.save()
+	}*/
+	
+	
 }

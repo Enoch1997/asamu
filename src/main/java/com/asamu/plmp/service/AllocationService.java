@@ -12,6 +12,7 @@ public class AllocationService {
 	private AllocationDAO allocationDAO;
 	@Autowired
 	private ProjectService projectService;
+	
 	public void setAllocation(Integer proId, Integer expId) {
 		// TODO Auto-generated method stub
 		ExpertReview expertReview = new ExpertReview();
@@ -20,7 +21,25 @@ public class AllocationService {
 		expertReview.setProjectId(proId);
 		allocationDAO.save(expertReview);		
 		projectService.updateProjectStatus(proId,3);
+	}
+
+	public ExpertReview findExpertReview(Integer ProjectId) {
+		// TODO Auto-generated method stub
+		return allocationDAO.findByProjectId(ProjectId);
 		
 	}
+
+	public void saveCommentAndScore(Integer projectId, Integer score, String comment) {
+		// TODO Auto-generated method stub
+		ExpertReview expertReview = allocationDAO.findByProjectId(projectId);
+		expertReview.setScore(score);
+		expertReview.setComment(comment);
+		allocationDAO.save(expertReview);
+		
+		projectService.updateProjectStatus(projectId,4);
+		
+	}
+	
+	
 
 }

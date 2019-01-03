@@ -19,8 +19,7 @@ public interface ProjectDAO extends JpaRepository<ProjectinfoDO, Integer>{
 
 	@Query("select u from ProjectinfoDO u where u.status = ?1")
 	List<ProjectinfoDO> findByStatus(Integer status);
-
-
+	
 	@Modifying
 	@Query(value="UPDATE ProjectinfoDO xe SET xe.status= :status WHERE xe.id= :id")
 	void update(@Param("id")Integer id, @Param("status")Integer status);
