@@ -112,8 +112,8 @@ public class ProjectController {
 	@ResponseBody
 	public JsonResult getmidProjectByStatus() {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(5);
-		List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(8);
-		projectinfoDOs.addAll(projectinfoDOs1);
+		//List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(8);
+		//projectinfoDOs.addAll(projectinfoDOs1);
 		return JsonResult.success(projectinfoDOs);
 	}
 	
@@ -121,8 +121,8 @@ public class ProjectController {
 	@ResponseBody
 	public JsonResult getendProjectByStatus() {
 		List<ProjectinfoDO> projectinfoDOs = projectService.findProjectByStatus(7);
-		List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(10);
-		projectinfoDOs.addAll(projectinfoDOs1);
+		//List<ProjectinfoDO> projectinfoDOs1 = projectService.findProjectByStatus(10);
+		//projectinfoDOs.addAll(projectinfoDOs1);
 		return JsonResult.success(projectinfoDOs);
 	}
 	
