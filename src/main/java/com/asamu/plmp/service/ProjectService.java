@@ -133,17 +133,23 @@ public class ProjectService {
 		return list1;
 	}
 
+	@Transactional
 	public void updateMidMaterialId(Integer id, Integer midMaterialId) {
 		// TODO Auto-generated method stub
 		ProjectinfoDO projectinfoDO = projectDAO.findById(id).get();
 		projectinfoDO.setMidtermMaterialId(midMaterialId);
+		//上传材料后 项目状态由中期待整 -> 立项
+		projectDAO.update(id,7);
 		projectDAO.save(projectinfoDO);
 	}
 
+	@Transactional
 	public void updateEndMaterialId(Integer id, Integer endMaterialId) {
 		// TODO Auto-generated method stub
 		ProjectinfoDO projectinfoDO = projectDAO.findById(id).get();
 		projectinfoDO.setEndMaterialId(endMaterialId);
+		//上传材料后 项目状态由结题待整 -> 中期通过
+		projectDAO.update(id,7);
 		projectDAO.save(projectinfoDO);
 	}
 

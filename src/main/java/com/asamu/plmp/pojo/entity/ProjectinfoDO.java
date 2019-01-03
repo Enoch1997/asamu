@@ -215,7 +215,12 @@ public class ProjectinfoDO extends BaseEntity {
 				+ levelName + ", directorUserName=" + directorUserName + ", statusName=" + statusName + "]";
 	}
 
-	
+	public String getIsUploadEnd() {
+		if(endMaterialId==null) {
+			return "未上传";
+		}
+		return "已上传";
+	}
 	
 	
 }

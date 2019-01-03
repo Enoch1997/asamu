@@ -78,4 +78,6 @@ public class UserController {
 		return JsonResult.success(list);
 	}
 	
+	//public String getDetailPage(String)
+	
 }

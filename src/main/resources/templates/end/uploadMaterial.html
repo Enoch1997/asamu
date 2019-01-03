@@ -104,6 +104,7 @@ function save(){
 	    success: function (data) {
 	    	if(data.code="200"){
 	    		alert("保存成功");
+	    		window.parent.location.href='/#/end/material';
 	    	}
 	    },
 	    error:function(data){

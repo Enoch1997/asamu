@@ -4,14 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.asamu.plmp.dao.MaterialReviewDAO;
+import com.asamu.plmp.dao.ProjectDAO;
 import com.asamu.plmp.pojo.entity.MaterialReview;
+import com.asamu.plmp.pojo.entity.ProjectinfoDO;
 
 @Service
 public class MaterialReviewService {
 
 	@Autowired
 	MaterialReviewDAO materialReviewDAO;
+	@Autowired
+	private ProjectDAO projectDAO;
 	
+	//驳回中期材料
 	public void setMidReject(Integer projectId, Integer reviewResult, String rejectReason) {
 		// TODO Auto-generated method stub
 			MaterialReview materReview = materialReviewDAO.findByProjrctId(projectId);
@@ -32,6 +37,11 @@ public class MaterialReviewService {
 				
 			}
 			
+			//驳回后 置项目中期材料为空
+			ProjectinfoDO projectinfoDO = projectDAO.findById(projectId).get();
+			projectinfoDO.setMidtermMaterialId(null);
+			projectDAO.save(projectinfoDO);
+			
 	}
 
 	public void setEndReject(Integer projectId, Integer reviewResult, String rejectReason) {
@@ -51,8 +61,12 @@ public class MaterialReviewService {
 				newMaterialReview.setRejectReason(rejectReason);
 				newMaterialReview.setReviewResult(reviewResult);
 				materialReviewDAO.save(newMaterialReview);
-				
 			}
+			
+			//驳回后 置项目结题材料为空
+			ProjectinfoDO projectinfoDO = projectDAO.findById(projectId).get();
+			projectinfoDO.setEndMaterialId(null);
+			projectDAO.save(projectinfoDO);
 			
 	}
 }
