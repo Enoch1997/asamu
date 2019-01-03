@@ -9,7 +9,7 @@
 	<div style="padding: 20px; background-color: #F2F2F2;">
 		<div class="layui-card">
 		<input type="hidden" id="userId" th:value="${session.user.id}">
-	        <div class="layui-card-header">上传材料</div>
+	        <div class="layui-card-header">中期检查项目</div>
         	<div class="layui-card-body">
 			    <div class="layui-form-item" style="margin:10px;">
 			    	<table class="layui-hide" id="test" lay-filter="test"></table>
@@ -57,29 +57,8 @@ layui.use('table', function(){
 			  window.parent.location.href = "/#/mid/upload?projectId="+data.id;
 		  }
 	  });
-	});
-	
-layui.use('upload', function(){
-	var upload = layui.upload;
-	//选完文件后不自动上传
-	  upload.render({
-	    elem: '#choose'
-	    ,url: '/upload/declaration'
-	    ,auto: false
-	    ,accept: 'file'
-	    //,multiple: true
-	    ,bindAction: '#upload'
-	    ,done: function(res){
-	    	if(res.code=='200'){
-	    		alert("上传成功");
-	   	      $("#declarationMaterialId").val(res.data.id);
-	   	   		$("#flag").attr("hidden",false);
-	    	}else{
-	    		alert(res.msg);
-	    	}
-	      
-	    }
-	  });
+
+
 });
 </script>
 <script type="text/html" id="barDemo">
