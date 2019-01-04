@@ -54,6 +54,22 @@
 					    </div>
 				    </div>
 			    </div>
+			    <div class="layui-form-item">
+				    <label class="layui-form-label">角色</label>
+				    <div class="layui-input-inline">
+				      <select id="roleId" class="layui-input">
+				        <option value="1">管理员</option>
+				        <option value="2">教职工</option>
+				        <option value="3">评审专家</option>
+				      </select>
+				    </div>
+			    </div>
+			    <div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">备注</label>
+				    <div class="layui-input-block">
+				      <textarea placeholder="" class="layui-textarea" id="remarks"></textarea>
+				    </div>
+				</div>
 			   <div class="layui-form-item" style="margin-left:11px;" >
 			    <div class="layui-input-block">
 			      <button  class="layui-btn layui-btn-primary" onclick="save()">保存</button>
@@ -71,7 +87,11 @@ function save(){
 	var unit=$("#unit").val();
 	var password=$("#password").val();
 	var username=$("#username").val();
-	
+	var roleId=$("#roleId").val();
+	var remarks=$("#remarks").val();
+	if(username==''||password==''){
+		alert("请填写完整信息");
+	}
 	$.ajax({
 	    type: "post",
 	    dataType: "json",
@@ -80,6 +100,7 @@ function save(){
 	    success: function (data) {
 	        if (data.code == "200") {
 				alert("保存成功");
+				window.parent.location.href="/#/user/list";
 	  		}
 	    },
 	    error: function (data) {

@@ -29,14 +29,21 @@ $.ajax({
 window.onhashchange = function(){
     var hash = location.hash;
     hash = hash.substring(1,hash.length);
+    var old=$("#mainFrame").attr("src");
     $("#mainFrame").attr("src", hash);
 }
 function changeMenu(url){
 	var u = window.location.href;
 	var end = u.indexOf("#");
 	var rurl = u.substring(0,end);
-  	//设置新的锚点
-  	window.location.href = rurl + "#" + url;
+	var old=u.substring(end+1,u.length);
+	if(old==url){
+		window.location.reload();
+    }else{
+    	//设置新的锚点
+      	window.location.href = rurl + "#" + url;
+    }
+  	
 	//$("#mainFrame").attr("src",url);
 }
 

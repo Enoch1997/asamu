@@ -1,11 +1,23 @@
 insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
 	values(1,'admin','123456','管理员张三','管理部','12482389299','zhangsan@qq.com',null,null,1,1,'系统管理员nb');
 insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
-	values(2,'lisi','123456','李老师','教育部','15899654878','lisi@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
+	values(2,'teacher','123456','李老师','教育部','15899654878','lisi@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
 insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
 	values(3,'wangwu','123456','专家王某','专家部','13365985689','wangwu@qq.com',null,null,3,1,'我是专家,我来评审');
 insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
 	values(4,'zhaoliu','123456','专家赵某','专家部','13565985689','zhaoliu@qq.com',null,null,3,1,'我是专家,我来评审');
+insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
+	values(5,'enoch','123456','专家胡某','专家部','13563485689','enoch@qq.com',null,null,3,1,'我是专家,我来评审');
+insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
+	values(6,'duan123','123456','段老师','教育部','15324965378','duan@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
+insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
+	values(7,'ychdsb','123456','俞老师','教育部','15235384588','ychdsb@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
+insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
+	values(8,'heheda','123456','河老师','教育部','15896342878','hheda@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
+insert into t_user(id,username,password,real_name,unit,tel,email,create_time,update_time,role_id,status,remarks) 
+	values(9,'hanxin','123456','韩老师','教育部','15847234578','hanxin@qq.com',null,null,2,1,'我是教职工,我可以申报项目');
+
+
 
 insert into t_role(id,name,description,create_time,update_time,remarks)
 	values(1,'管理员',null,null,null,null);
@@ -104,7 +116,7 @@ insert into t_role_menu(id,role_id,menu_id) values(34,2,19);
 insert into t_role_menu(id,role_id,menu_id) values(35,2,20);
 
 insert into t_role_menu(id,role_id,menu_id) values(36,3,4);
-insert into t_role_menu(id,role_id,menu_id) values(37,3,8);
+insert into t_role_menu(id,role_id,menu_id) values(37,3,9);
 insert into t_role_menu(id,role_id,menu_id) values(38,3,19);
 insert into t_role_menu(id,role_id,menu_id) values(39,3,20);
 
@@ -171,3 +183,9 @@ insert into t_declaration_rule(id,type,rule_content,deadline) values(3,2,'结题
 
 insert into t_projectinfo(id,name,apply_level,field,members,promise,director_user_id,status,declaration_material_id)
 	values(1,"基于深度学习的遗传算法",1,"深度学习","胡喜乐,胡喜乐,胡喜乐","我承诺...",2,0,1);
+insert into t_projectinfo(id,name,apply_level,field,members,promise,director_user_id,status,declaration_material_id)
+	values(3,"高校项目全生命周期系统设计与实现",1,"java编程","胡喜乐","我保证完成任务",2,1,1);
+insert into t_projectinfo(id,name,apply_level,field,members,promise,director_user_id,status,declaration_material_id)
+	values(4,"测试项目02",1,"人脸识别","Rose,Tom","我保证完成任务...",2,1,1);
+insert into t_projectinfo(id,name,apply_level,field,members,promise,director_user_id,status,declaration_material_id)
+	values(5,"测试项目03",1,"无人驾驶","Jack,Mary","我也保证完成任务...",6,0,1);

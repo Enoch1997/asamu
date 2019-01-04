@@ -105,6 +105,13 @@ public class UserService {
 		 userDAO.updatePassword(id,newPsd);
 		return JsonResult.success();
 	}
+
+	public JsonResult updateUserRole(Integer userId, Integer roleId) {
+		UserDO user = userDAO.findUserDoById(userId);
+		 user.setRoleId(roleId);
+		 userDAO.save(user);
+		return JsonResult.success();
+	}
 	
 
 

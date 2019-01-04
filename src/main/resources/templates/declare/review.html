@@ -54,20 +54,12 @@ layui.use('table', function(){
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
 	    if(obj.event === 'download'){
-	      layer.msg('正在下载');
-	      /* $.ajax({
-	    	    type: "post",
-	    	    dataType: "json",
-	    	    data:{id:data.declarationMaterialId},
-	    	    url: "/download",
-	    	    success: function (data) {
-	    	    	
-	    	    },
-	    	    error: function (data) {
-	    	        alert("服务器出错！");
-	    	    }
-	    	}); */
-	      window.location.href="/download?id="+data.declarationMaterialId;
+	    	if(data.declarationMaterialId==null||data.declarationMaterialId==''){
+		    	  alert('材料未上传');
+		    	  return;
+			  } 
+	    	layer.msg('正在下载');
+		      window.location.href="/download?id="+data.declarationMaterialId;
 	    } else if(obj.event === 'detail'){
 	    	window.parent.location.href="/#/project/detail?id="+data.id;
 	    } else if(obj.event=='review'){

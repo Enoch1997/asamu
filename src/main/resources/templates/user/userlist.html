@@ -70,16 +70,54 @@ layui.use('table', function(){
 				        alert("服务器出错！");
 				    }
 				});
+		  }else if(object.event=='setRole'){
+			  var content='<div class="layui-form-item">'
+				  	+'<label class="layui-form-label">选择角色</label>'
+				  	+'<div class="layui-input-block">'
+				  	+'<select id="roleId" style="margin-top:10px;width:80px;" lay-filter="aihao">'
+				  	+'<option value="1">管理员</option>'
+				  	+'<option value="2">教职工</option>'
+				  	+'<option value="2">评审专家</option>';
+			  	content+='</select></div></div>';
+			    content+='<div style="text-align:center;"><button class="layui-btn" onclick="setRole('+data.id+')">确定</button></div>';
+			    	
+			  
+			  layer.open({
+				  type: 1,
+				  title:'设置角色',
+				  area: ['280px', '180px'], //宽高
+				  content: content
+				});
 		  }
 	  });
 	  
 	});
+	
+	function setRole(userId){
+		var roleId=$("#roleId").val();
+		$.ajax({
+		    type: "post",
+		    dataType: "json",
+		    data:{userId:userId,roleId:roleId},
+		    url: "/user/updateRole",
+		    success: function (data) {
+		        if (data.code == "200") {
+		        	alert("操作成功");
+		        	window.location.reload();
+		  		}
+		    },
+		    error: function (data) {
+		        alert("服务器出错！");
+		    }
+		});
+	}
 	
 	function addUser(){
 		window.parent.location.href="/#/user/add";
 	}
 </script>
 <script type="text/html" id="barDemo">
+<a class="layui-btn layui-btn-xs" lay-event="setRole">设置角色</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>

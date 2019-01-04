@@ -119,7 +119,8 @@ public class MaterialController {
                         os.write(buffer, 0, i);
                         i = bis.read(buffer);
                     }
-                    System.out.println("下载成功");
+                    return JsonResult.success();
+                    //System.out.println("下载成功");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

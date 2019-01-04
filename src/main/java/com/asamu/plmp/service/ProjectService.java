@@ -141,7 +141,7 @@ public class ProjectService {
 		ProjectinfoDO projectinfoDO = projectDAO.findById(id).get();
 		projectinfoDO.setMidtermMaterialId(midMaterialId);
 		//上传材料后 项目状态由中期待整 -> 立项
-		projectDAO.update(id,7);
+		projectDAO.update(id,5);
 		projectDAO.save(projectinfoDO);
 	}
 
