@@ -61,6 +61,12 @@ public class UserController {
 		return userService.updateUserPsd(id, oldPsd, newPsd);
 	}
     
+    @RequestMapping("/updateRole")
+    @ResponseBody
+	public JsonResult updateRole(Integer userId,Integer roleId) {
+		return userService.updateUserRole(userId,roleId);
+	}
+    
 	@RequestMapping("/getUsers")
 	@ResponseBody
 	public JsonResult getUsers() {
@@ -107,6 +113,7 @@ public class UserController {
 		UserDO user;
 		if(id==null) {
 			user = (UserDO)session.getAttribute("user");
+			user = userService.findUserById(user.getId());
 		}else {
 			user = userService.findUserById(id);
 		}

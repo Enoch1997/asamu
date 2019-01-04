@@ -53,10 +53,15 @@ layui.use('table', function(){
 	  table.on('tool(test)',function(obj){
 		  var data=obj.data;
 		  if(obj.event == 'download'){
-		      layer.msg('正在下载');
-		      window.location.href="/download?id="+data.midtermMaterialId;
+			  if(data.midtermMaterialId==null||data.midtermMaterialId==''){
+		    	  alert('材料未上传');
+		    	  return;
+			  } 
+			  layer.msg('正在下载');
+		       window.location.href="/download?id="+data.midtermMaterialId;
+		     
 		    } else if(obj.event == 'detail'){
-		      alert("查看");
+		    	window.parent.location.href="/#/project/detail?id="+data.id;
 		    } else if(obj.event == 'pass'){//通过
 		    	$.ajax({
 		    	    type: "post",
