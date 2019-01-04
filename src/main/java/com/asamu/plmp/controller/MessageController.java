@@ -22,7 +22,7 @@ public class MessageController {
 	@RequestMapping("/getUserMessage")
 	@ResponseBody
 	public JsonResult getUserMessage(Integer userId) {
-		List<Message> list = messageService.findMessageByUserId(1);
+		List<Message> list = messageService.findMessageByUserId(userId);
 		return JsonResult.success(list);
 	}
 	

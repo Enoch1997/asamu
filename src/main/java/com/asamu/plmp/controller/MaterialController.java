@@ -119,7 +119,7 @@ public class MaterialController {
                         os.write(buffer, 0, i);
                         i = bis.read(buffer);
                     }
-                    return JsonResult.success();
+                    return null;
                     //System.out.println("下载成功");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -141,7 +141,7 @@ public class MaterialController {
                 }
             }
         }
-        return JsonResult.success();
+        return null;
 	}
 	
 	@RequestMapping("/mid/reject")
